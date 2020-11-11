@@ -1,9 +1,8 @@
 class User {
-  constructor(firstname, lastname, username, password) {
+  constructor(username, email, password) {
     this.id = Math.random().toString();
-    this.firstname = firstname;
-    this.lastname = lastname;
     this.username = username;
+    this.email = email;
     this.password = password;
   }
 }

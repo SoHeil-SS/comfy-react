@@ -2,15 +2,10 @@ const { default: User } = require("./user");
 
 class Repository {
   constructor() {
-    this.users = [
-      new User("user1", "first", "last", "12156"),
-      new User("user2", "first", "last", "22257"),
-      new User("user3", "first", "last", "32358"),
-      new User("user4", "first", "last", "42459"),
-    ];
+    this.users = [];
   }
-  add(username, firstname, lastname, password, isAdmin) {
-    const user = new User(username, firstname, lastname, password, isAdmin);
+  add(username, email, password) {
+    const user = new User(username, email, password);
     this.users.push(user);
   }
   // delete(id) {

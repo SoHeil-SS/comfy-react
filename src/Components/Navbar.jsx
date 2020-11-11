@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navbar = ({ factorProducts, handleFactorVisibility }) => {
+const Navbar = ({ handleMode, factorProducts, handleFactorVisibility }) => {
   function basket() {
     let basket = 0;
     factorProducts.forEach((p) => {
@@ -9,16 +9,23 @@ const Navbar = ({ factorProducts, handleFactorVisibility }) => {
     return basket;
   }
   return (
-    <div>
-      <nav className="navbar">
+    <div style={{ position: "relative" }}>
+      <nav className="navbar" style={{ position: "fixed" }}>
         <div className="navbar-center ">
           <span className="nav-icon">
-            <i className="fas fa-bars"></i>
+            <button
+              className="btn btn-danger btn-md"
+              style={{ width: "80px" }}
+              onClick={() => handleMode("sign")}
+            >
+              Sign
+            </button>
           </span>
           <img alt="store logo" src="./images/logo.svg"></img>
           <div className="cart-btn">
             <button
-              className="nav-icon"
+              className="nav-icon btn btn-primary   btn-sm"
+              style={{ width: "60px", height: "35px" }}
               disabled={!basket()}
               onClick={handleFactorVisibility}
             >

@@ -1,6 +1,7 @@
 import React from "react";
+import { ScrollTo } from "react-scroll-to";
 
-const Header = () => {
+const Header = ({ handleMode }) => {
   const headerStyle = {
     minHeight: "calc(100vh - 60px)",
     background: "url('./images/hero-bcg.jpeg') center/cover no-repeat",
@@ -11,23 +12,29 @@ const Header = () => {
   return (
     <>
       <div>
-        <header
-          style={headerStyle}
-          // className="hero"
-        >
+        <header style={headerStyle}>
           <div className="banner">
             <h1 className="banner-title">Furniture Collection</h1>
-            <button className="banner-btn">Shop Now</button>
+            <ScrollTo>
+              {({ scroll }) => (
+                <button
+                  className="banner-btn"
+                  onClick={() => handleMode("showProduct")}
+                  onMouseDown={() =>
+                    setTimeout(() => {
+                      scroll({ y: 1500 });
+                    }, 300)
+                  }
+                >
+                  Shop Now
+                </button>
+              )}
+            </ScrollTo>
+            >{/* </ScrollArea>
+              )}
+            </ScrollTo> */}
           </div>
         </header>
-      </div>
-
-      <div>
-        <section className="products">
-          <div className="section-title">
-            <h2> Our Products</h2>
-          </div>
-        </section>
       </div>
     </>
   );

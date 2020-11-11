@@ -1,10 +1,12 @@
 import React from "react";
-// import Button from "@material-ui/core/Button";
 
 const SingAndLogin = ({
   handleInputChange,
-  handleSing,
-  userAndEmail,
+  handleMode,
+  handleSignIn,
+  handleSignUp,
+  email,
+  username,
   password,
 }) => {
   return (
@@ -17,37 +19,57 @@ const SingAndLogin = ({
       }}
     >
       <form>
-        <div classNameName="form-group">
-          <label for="exampleInputEmail1">
-            Enter your Information for sign ...
-          </label>
+        <div className="form-group">
+          <label>Enter your Information for sign ...</label>
           <input
             type="text"
-            value={userAndEmail}
-            name="userAndEmail"
+            value={email}
+            name="email"
             onChange={handleInputChange}
             className="form-control"
             aria-describedby="emailHelp"
-            placeholder="email address or username ..."
+            placeholder="Email address"
           ></input>
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1"></label>
           <input
             type="text"
+            value={username}
+            name="username"
+            onChange={handleInputChange}
+            className="form-control"
+            placeholder="Username"
+          ></input>
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
             value={password}
             name="password"
             onChange={handleInputChange}
             className="form-control"
-            id="exampleInputPassword1"
             placeholder="Password"
           ></input>
         </div>
-        <button type="button" onClick={handleSing} className="btn btn-danger">
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => {
+            handleMode("showProduct");
+            handleSignIn();
+          }}
+        >
           Sign in
         </button>
-        &nbsp; &nbsp;
-        <button type="button" onClick={handleSing} className="btn btn-primary">
+        <button
+          type="button"
+          style={{ marginLeft: "20px" }}
+          onClick={() => {
+            handleMode("showProduct");
+            handleSignUp();
+          }}
+          className="btn btn-primary"
+        >
           Sign up
         </button>
       </form>
