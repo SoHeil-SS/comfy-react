@@ -1,6 +1,11 @@
 import React from "react";
 
-const Navbar = ({ handleMode, factorProducts, handleFactorVisibility }) => {
+const Navbar = ({
+  handleMode,
+  signedUser,
+  factorProducts,
+  handleFactorVisibility,
+}) => {
   function basket() {
     let basket = 0;
     factorProducts.forEach((p) => {
@@ -14,11 +19,13 @@ const Navbar = ({ handleMode, factorProducts, handleFactorVisibility }) => {
         <div className="navbar-center ">
           <span className="nav-icon">
             <button
-              className="btn btn-danger btn-md"
-              style={{ width: "80px" }}
+              className={
+                !signedUser ? `btn btn-danger btn-md` : "btn btn-warning btn-md"
+              }
+              style={{ width: "fit-content", minWidth: "60px" }}
               onClick={() => handleMode("sign")}
             >
-              Sign
+              {signedUser ? signedUser.username : "sign in "}
             </button>
           </span>
           <img alt="store logo" src="./images/logo.svg"></img>

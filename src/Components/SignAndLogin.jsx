@@ -25,6 +25,7 @@ const SingAndLogin = ({
             type="text"
             value={email}
             name="email"
+            required
             onChange={handleInputChange}
             className="form-control"
             aria-describedby="emailHelp"
@@ -34,6 +35,7 @@ const SingAndLogin = ({
         <div className="form-group">
           <input
             type="text"
+            required="required"
             value={username}
             name="username"
             onChange={handleInputChange}
@@ -44,6 +46,7 @@ const SingAndLogin = ({
         <div className="form-group">
           <input
             type="password"
+            required={true}
             value={password}
             name="password"
             onChange={handleInputChange}
@@ -52,9 +55,8 @@ const SingAndLogin = ({
           ></input>
         </div>
         <button
-          type="button"
           className="btn btn-danger"
-          onClick={() => {
+          onClick={(e) => {
             handleMode("showProduct");
             handleSignIn();
           }}

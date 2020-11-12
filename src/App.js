@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "react-bootstrap/Spinner";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import userRepository from "./Core/UserRepository";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
@@ -17,7 +17,7 @@ class App extends Component {
     factorVisibility: false,
     isDialogOpen: false,
     totalPrice: 0,
-    signedUser: { email: "", username: "", password: "" },
+    signedUser: null,
     username: "",
     email: "",
     password: "",
@@ -141,6 +141,15 @@ class App extends Component {
   handleSignIn = () => {
     const { username, email, password } = this.state;
     console.log(username);
+    const user = userRepository.users.find((u) => u.username === username);
+    if (user) {
+      this.setState({
+        signedUser: { email: email, username: username, password: password },
+        username: "",
+        email: "",
+        password: "",
+      });
+    } else alert("user not find");
   };
   handleSignUp = () => {
     const { username, email, password } = this.state;
@@ -148,17 +157,25 @@ class App extends Component {
       (user) => user.username === username
     );
     if (user.length === 1) {
-      alert("please enter another userName or userName is incorrect");
+      alert("please enter another username or username is incorrect");
       console.log(user);
+      this.setState({ username: "", email: "", password: "" });
       return;
     }
     userRepository.add(username, email, password);
+    this.setState({
+      signedUser: { email: email, username: username, password: password },
+      username: "",
+      email: "",
+      password: "",
+    });
     console.log(userRepository.users);
   };
 
   render() {
-    console.log("render");
     const {
+      user,
+      signedUser,
       products,
       mode,
       factorProducts,
@@ -168,6 +185,8 @@ class App extends Component {
       username,
       password,
     } = this.state;
+    console.log(user, signedUser);
+    console.log("render");
     if (!products) {
       console.log(mode);
 
@@ -203,6 +222,7 @@ class App extends Component {
       return (
         <>
           <Navbar
+            signedUser={signedUser}
             handleMode={this.handleMode}
             factorProducts={factorProducts}
             handleFactorVisibility={this.handleFactorVisibility}
