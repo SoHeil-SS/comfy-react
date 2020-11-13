@@ -1,4 +1,4 @@
-const { default: User } = require("./user");
+import User from "./user";
 
 class Repository {
   constructor() {
@@ -27,4 +27,4 @@ class Repository {
     return this.users.find((u) => u.id === id);
   }
 }
-module.exports = new Repository();
+export default new Repository();
