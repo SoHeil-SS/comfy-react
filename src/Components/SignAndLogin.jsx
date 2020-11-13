@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingAndLogin = ({
   handleInputChange,
-  handleMode,
   handleSignIn,
   handleSignUp,
   email,
@@ -25,7 +25,6 @@ const SingAndLogin = ({
             type="text"
             value={email}
             name="email"
-            required
             onChange={handleInputChange}
             className="form-control"
             aria-describedby="emailHelp"
@@ -35,7 +34,6 @@ const SingAndLogin = ({
         <div className="form-group">
           <input
             type="text"
-            required="required"
             value={username}
             name="username"
             onChange={handleInputChange}
@@ -46,7 +44,6 @@ const SingAndLogin = ({
         <div className="form-group">
           <input
             type="password"
-            required={true}
             value={password}
             name="password"
             onChange={handleInputChange}
@@ -54,26 +51,26 @@ const SingAndLogin = ({
             placeholder="Password"
           ></input>
         </div>
-        <button
+        <Link
+          to="/"
           className="btn btn-danger"
           onClick={(e) => {
-            handleMode("showProduct");
             handleSignIn();
           }}
         >
           Sign in
-        </button>
-        <button
+        </Link>
+        <Link
+          to="/"
           type="button"
           style={{ marginLeft: "20px" }}
           onClick={() => {
-            handleMode("showProduct");
             handleSignUp();
           }}
           className="btn btn-primary"
         >
           Sign up
-        </button>
+        </Link>
       </form>
     </div>
   );

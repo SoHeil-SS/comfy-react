@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import userRepository from "./Core/UserRepository";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
@@ -9,10 +10,12 @@ import Factor from "./Components/Factor";
 import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
+import ProductDetails from "./Components/ProductDetails";
 
 class App extends Component {
   state = {
     products: null,
+    product: null,
     factorProducts: [],
     factorVisibility: false,
     isDialogOpen: false,
@@ -21,7 +24,7 @@ class App extends Component {
     username: "",
     email: "",
     password: "",
-    mode: "main",
+    path: null,
   };
 
   handleState = (factorProducts) => {
@@ -31,6 +34,11 @@ class App extends Component {
     } else {
       return { factorProducts };
     }
+  };
+
+  handlePath = (product, path) => {
+    this.setState({ product, path });
+    console.log(product, path);
   };
 
   handleAddProduct = (product, id) => {
@@ -90,6 +98,7 @@ class App extends Component {
       };
     });
   };
+
   handleClear = () => {
     this.closeDialog();
     this.setState({
@@ -108,35 +117,10 @@ class App extends Component {
     });
   };
 
-  handleMode = (mode) => {
-    this.setState({ mode });
-  };
-
   handleInputChange = (e) => {
     const name = e.target.name;
     this.setState({ [name]: e.target.value });
   };
-  componentDidMount() {
-    fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
-      .then((response) => response.json())
-      .then((response) =>
-        response.items.map((p) => {
-          return {
-            title: p.fields.title,
-            id: p.sys.id,
-            price: p.fields.price,
-            image: p.fields.image.fields.file.url,
-            alt: p.fields.title,
-            // inStock: p.fields.inStock,
-          };
-        })
-      )
-      .then((products) =>
-        setTimeout(() => {
-          this.setState({ products });
-        }, 2000)
-      );
-  }
 
   handleSignIn = () => {
     const { username, email, password } = this.state;
@@ -151,6 +135,7 @@ class App extends Component {
       });
     } else alert("user not find");
   };
+
   handleSignUp = () => {
     const { username, email, password } = this.state;
     const user = userRepository.users.filter(
@@ -172,12 +157,34 @@ class App extends Component {
     console.log(userRepository.users);
   };
 
+  componentDidMount() {
+    fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
+      .then((response) => response.json())
+      .then((response) =>
+        response.items.map((p) => {
+          return {
+            title: p.fields.title,
+            id: p.sys.id,
+            price: p.fields.price,
+            image: p.fields.image.fields.file.url,
+            alt: p.fields.title,
+            // inStock: p.fields.inStock,
+          };
+        })
+      )
+      .then((products) =>
+        setTimeout(() => {
+          this.setState({ products });
+        }, 750)
+      );
+  }
+
   render() {
     const {
-      user,
       signedUser,
       products,
-      mode,
+      product,
+      path,
       factorProducts,
       factorVisibility,
       isDialogOpen,
@@ -185,11 +192,8 @@ class App extends Component {
       username,
       password,
     } = this.state;
-    console.log(user, signedUser);
     console.log("render");
     if (!products) {
-      console.log(mode);
-
       return (
         <Spinner
           style={{
@@ -206,57 +210,67 @@ class App extends Component {
         </Spinner>
       );
     }
-    if (mode === "sign") {
-      return (
-        <SingAndLogin
-          username={username}
-          password={password}
-          handleMode={this.handleMode}
-          handleInputChange={this.handleInputChange}
-          handleSignIn={this.handleSignIn}
-          handleSignUp={this.handleSignUp}
-        />
-      );
-    }
-    if (mode === "main" || "showProduct") {
-      return (
-        <>
-          <Navbar
-            signedUser={signedUser}
-            handleMode={this.handleMode}
-            factorProducts={factorProducts}
-            handleFactorVisibility={this.handleFactorVisibility}
-          />
-          <Header handleMode={this.handleMode} />
-          {mode === "showProduct" && (
-            <>
-              <OurProducts />
-              <ProductMapper
-                factorProducts={factorProducts}
-                products={products}
+    console.log(path);
+
+    return (
+      <>
+        <Router>
+          <Switch>
+            <Route path={`/products/${path}`}>
+              <ProductDetails
+                product={product}
                 handleAddProduct={this.handleAddProduct}
-              />
-              <Factor
+                signedUser={signedUser}
                 factorProducts={factorProducts}
-                handleIncDec={this.handleIncDec}
-                handleRemove={this.handleRemove}
-                openDialog={this.openDialog}
-                totalPrice={totalPrice}
-                handleClear={this.handleClear}
-                factorVisibility={factorVisibility}
                 handleFactorVisibility={this.handleFactorVisibility}
               />
-              <BuyCarts
-                totalPrice={totalPrice}
-                closeDialog={this.closeDialog}
-                isDialogOpen={isDialogOpen}
-                handleClear={this.handleClear}
+            </Route>
+            <Route path="/sign">
+              <SingAndLogin
+                username={username}
+                password={password}
+                handleInputChange={this.handleInputChange}
+                handleSignIn={this.handleSignIn}
+                handleSignUp={this.handleSignUp}
               />
-            </>
-          )}
-        </>
-      );
-    }
+            </Route>
+            <Route path="/">
+              <Navbar
+                signedUser={signedUser}
+                factorProducts={factorProducts}
+                handleFactorVisibility={this.handleFactorVisibility}
+              />
+              <Header handleMode={this.handleMode} />
+              <>
+                <OurProducts />
+                <ProductMapper
+                  factorProducts={factorProducts}
+                  products={products}
+                  handleAddProduct={this.handleAddProduct}
+                  handlePath={this.handlePath}
+                />
+                <Factor
+                  factorProducts={factorProducts}
+                  handleIncDec={this.handleIncDec}
+                  handleRemove={this.handleRemove}
+                  openDialog={this.openDialog}
+                  totalPrice={totalPrice}
+                  handleClear={this.handleClear}
+                  factorVisibility={factorVisibility}
+                  handleFactorVisibility={this.handleFactorVisibility}
+                />
+                <BuyCarts
+                  totalPrice={totalPrice}
+                  closeDialog={this.closeDialog}
+                  isDialogOpen={isDialogOpen}
+                  handleClear={this.handleClear}
+                />
+              </>
+            </Route>
+          </Switch>
+        </Router>
+      </>
+    );
   }
 }
 

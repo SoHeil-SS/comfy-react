@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({
-  handleMode,
   signedUser,
-  factorProducts,
+  factorProducts = [],
   handleFactorVisibility,
 }) => {
   function basket() {
@@ -18,15 +18,15 @@ const Navbar = ({
       <nav className="navbar" style={{ position: "fixed" }}>
         <div className="navbar-center ">
           <span className="nav-icon">
-            <button
+            <Link
+              to="/sign"
               className={
                 !signedUser ? `btn btn-danger btn-md` : "btn btn-warning btn-md"
               }
               style={{ width: "fit-content", minWidth: "60px" }}
-              onClick={() => handleMode("sign")}
             >
               {signedUser ? signedUser.username : "sign in "}
-            </button>
+            </Link>
           </span>
           <img alt="store logo" src="./images/logo.svg"></img>
           <div className="cart-btn">
