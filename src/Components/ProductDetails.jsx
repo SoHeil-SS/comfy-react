@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Factor from "./Factor";
 import Navbar from "./Navbar";
 
 const ProductDetails = ({
@@ -8,6 +9,12 @@ const ProductDetails = ({
   handleAddProduct,
   handleFactorVisibility,
   product,
+  handleIncDec,
+  handleRemove,
+  openDialog,
+  totalPrice,
+  handleClear,
+  factorVisibility,
 }) => {
   return (
     <div>
@@ -74,6 +81,17 @@ const ProductDetails = ({
           similique qui alias. Temporibus, aut.
         </h3>
       </article>
+
+      <Factor
+        factorProducts={factorProducts}
+        handleIncDec={handleIncDec}
+        handleRemove={handleRemove}
+        openDialog={openDialog}
+        totalPrice={totalPrice}
+        handleClear={handleClear}
+        factorVisibility={factorVisibility}
+        handleFactorVisibility={handleFactorVisibility}
+      />
     </div>
   );
 };

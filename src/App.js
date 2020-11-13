@@ -224,6 +224,16 @@ class App extends Component {
                 factorProducts={factorProducts}
                 handleFactorVisibility={this.handleFactorVisibility}
               />
+              <Factor
+                factorProducts={factorProducts}
+                handleIncDec={this.handleIncDec}
+                handleRemove={this.handleRemove}
+                openDialog={this.openDialog}
+                totalPrice={totalPrice}
+                handleClear={this.handleClear}
+                factorVisibility={factorVisibility}
+                handleFactorVisibility={this.handleFactorVisibility}
+              />
             </Route>
             <Route path="/sign">
               <SingAndLogin
