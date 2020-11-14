@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Spinner from "react-bootstrap/Spinner";
+import { Spinner } from "react-bootstrap";
 
 import userRepository from "./Core/UserRepository";
 import Navbar from "./Components/Navbar";
@@ -12,152 +12,21 @@ import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
 import ProductDetails from "./Components/ProductDetails";
 
-class App extends Component {
-  state = {
-    products: null,
-    product: null,
-    factorProducts: [],
-    factorVisibility: false,
-    isDialogOpen: false,
-    totalPrice: 0,
-    signedUser: null,
-    username: "",
-    email: "",
-    password: "",
-    path: null,
-  };
+const App = () => {
+  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState(null);
+  const [factorProducts, setFactorProducts] = useState([]);
+  const [factorVisibility, setFactorVisibility] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [user, setUser] = useState({ username: "", password: " ", email: "" });
+  const [signedUser, setSignedUser] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [path, setPath] = useState(null);
 
-  handleState = (factorProducts) => {
-    this.totalPrice(factorProducts);
-    if (!factorProducts.length) {
-      return { factorProducts, factorVisibility: false };
-    } else {
-      return { factorProducts };
-    }
-  };
-
-  handlePath = (product, path) => {
-    this.setState({ product, path });
-    console.log(product, path);
-  };
-
-  handleAddProduct = (product, id) => {
-    this.setState((prevState) => {
-      const factorProducts = [...prevState.factorProducts];
-      const index = factorProducts.findIndex((p) => p.id === id);
-      if (index === -1) {
-        const p = { ...product };
-        p.inCart = 1;
-        p.total = p.price;
-        factorProducts.push(p);
-      } else {
-        this.handleIncDec(id, +1);
-      }
-      return this.handleState(factorProducts);
-    });
-  };
-
-  handleIncDec = (id, op) => {
-    this.setState((prevState) => {
-      let factorProducts = [...prevState.factorProducts];
-      const index = factorProducts.findIndex((p) => p.id === id);
-      factorProducts[index].inCart = factorProducts[index].inCart + op;
-      if (factorProducts[index].inCart === 0) {
-        factorProducts = factorProducts.filter((p) => p.id !== id);
-      } else {
-        factorProducts[index].total =
-          factorProducts[index].inCart * factorProducts[index].price;
-      }
-      return this.handleState(factorProducts);
-    });
-  }; //TODO fix sideEffect warning
-
-  handleRemove = (id) => {
-    this.setState((prevState) => {
-      const factorProducts = [...prevState.factorProducts].filter(
-        (p) => p.id !== id
-      );
-      return this.handleState(factorProducts);
-    });
-  };
-
-  openDialog = () => {
-    this.handleFactorVisibility();
-    setTimeout(() => {
-      this.setState({ isDialogOpen: true });
-    }, 650);
-  };
-
-  closeDialog = () => this.setState({ isDialogOpen: false });
-
-  handleFactorVisibility = () => {
-    this.setState((prevState) => {
-      const factorVisibility = !prevState.factorVisibility;
-      return {
-        factorVisibility,
-      };
-    });
-  };
-
-  handleClear = () => {
-    this.closeDialog();
-    this.setState({
-      factorProducts: [],
-      factorVisibility: false,
-    });
-  };
-
-  totalPrice = (factorProducts) => {
-    let totalPrice = 0;
-    this.setState(() => {
-      factorProducts.forEach((p) => {
-        totalPrice += p.total;
-      });
-      return { factorProducts, totalPrice };
-    });
-  };
-
-  handleInputChange = (e) => {
-    const name = e.target.name;
-    this.setState({ [name]: e.target.value });
-  };
-
-  handleSignIn = () => {
-    const { username, email, password } = this.state;
-    console.log(username);
-    const user = userRepository.users.find((u) => u.username === username);
-    if (user) {
-      this.setState({
-        signedUser: { email: email, username: username, password: password },
-        username: "",
-        email: "",
-        password: "",
-      });
-    } else alert("user not find");
-  };
-
-  handleSignUp = () => {
-    const { username, email, password } = this.state;
-    const user = userRepository.users.filter(
-      (user) => user.username === username
-    );
-    if (user.length === 1) {
-      alert("please enter another username or username is incorrect");
-      console.log(user);
-      this.setState({ username: "", email: "", password: "" });
-      return;
-    }
-    userRepository.add(username, email, password);
-    this.setState({
-      signedUser: { email: email, username: username, password: password },
-      username: "",
-      email: "",
-      password: "",
-    });
-    console.log(userRepository.users);
-  };
-
-  componentDidMount() {
+  useEffect(() => {
     fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
       .then((response) => response.json())
       .then((response) =>
@@ -174,114 +43,217 @@ class App extends Component {
       )
       .then((products) =>
         setTimeout(() => {
-          this.setState({ products });
+          setProducts(products);
         }, 750)
       );
-  }
+  }, []);
 
-  render() {
-    const {
-      signedUser,
-      products,
-      product,
-      path,
-      factorProducts,
-      factorVisibility,
-      isDialogOpen,
-      totalPrice,
-      username,
-      password,
-    } = this.state;
-    console.log("render");
-    if (!products) {
-      return (
-        <Spinner
-          style={{
-            marginLeft: "42%",
-            marginTop: "20%",
-            width: "250px",
-            height: "250px",
-          }}
-          animation="border"
-          role="status"
-          variant="danger"
-        >
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      );
+  const handleState = (factorProducts) => {
+    totalPriceFn(factorProducts);
+    if (!factorProducts.length) {
+      setFactorProducts(factorProducts);
+      setFactorVisibility(false);
+    } else {
+      setFactorProducts(factorProducts);
     }
-    console.log(path);
+  };
 
+  const handlePath = (product, path) => {
+    setProduct(product);
+    setPath(path);
+  };
+
+  const handleAddProduct = (product, id) => {
+    const factorCarts = [...factorProducts];
+    const index = factorCarts.findIndex((p) => p.id === id);
+    if (index === -1) {
+      const p = { ...product };
+      p.inCart = 1;
+      p.total = p.price;
+      factorCarts.push(p);
+    } else {
+      handleIncDec(id, +1);
+    }
+    handleState(factorCarts);
+  };
+
+  const handleIncDec = (id, op) => {
+    let factorCarts = [...factorProducts];
+    const index = factorCarts.findIndex((p) => p.id === id);
+    factorCarts[index].inCart = factorCarts[index].inCart + op;
+    if (factorCarts[index].inCart === 0) {
+      factorCarts = factorCarts.filter((p) => p.id !== id);
+    } else {
+      factorCarts[index].total =
+        factorCarts[index].inCart * factorCarts[index].price;
+    }
+    handleState(factorCarts);
+  };
+
+  const handleRemove = (id) => {
+    const factorCarts = [...factorProducts].filter((p) => p.id !== id);
+    handleState(factorCarts);
+  };
+
+  const openDialog = () => {
+    handleFactorVisibility();
+    setTimeout(() => {
+      setIsDialogOpen(true);
+    }, 650);
+  };
+
+  const closeDialog = () => setIsDialogOpen(false);
+
+  const handleFactorVisibility = () => setFactorVisibility(!factorVisibility);
+
+  const handleClear = () => {
+    closeDialog();
+    setFactorProducts([]);
+    setFactorVisibility(false);
+  };
+
+  const totalPriceFn = (factorProducts) => {
+    let totalPrice = 0;
+    factorProducts.forEach((p) => {
+      totalPrice += p.total;
+    });
+    setFactorProducts(factorProducts);
+    setTotalPrice(totalPrice);
+  };
+
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    setUser((user[name] = e.target.value));
+    //TODO
+    setUser({
+      [name]: e.target.value,
+      [name]: e.target.value,
+      [name]: e.target.value,
+    });
+  };
+
+  const handleSignIn = () => {
+    console.log(user.username);
+    const userInRepository = userRepository.users.find(
+      (u) => u.username === user.username
+    );
+    if (userInRepository) {
+      setSignedUser({
+        email: user.email,
+        username: user.username,
+        password: user.password,
+      });
+      setUser({ username: "", email: "", password: "" });
+    } else alert("user not find");
+  };
+
+  const handleSignUp = () => {
+    const userInRepository = userRepository.users.filter(
+      (u) => u.username === user.username
+    );
+    if (userInRepository.length) {
+      alert("please enter another username...");
+      console.log(userInRepository);
+      setUser({ username: "", email: "", password: "" });
+      return;
+    }
+    userRepository.add(user.username, user.email, user.password);
+    setSignedUser({
+      email: user.email,
+      username: user.username,
+      password: user.password,
+    });
+    setUser({ username: "", email: "", password: "" });
+  };
+
+  console.log("render");
+  if (!products) {
     return (
-      <>
-        <Router>
-          <Switch>
-            <Route path={`/products/${path}`}>
-              <ProductDetails
-                product={product}
-                handleAddProduct={this.handleAddProduct}
-                signedUser={signedUser}
+      <Spinner
+        style={{
+          marginLeft: "42%",
+          marginTop: "20%",
+          width: "250px",
+          height: "250px",
+        }}
+        animation="border"
+        role="status"
+        variant="danger"
+      >
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
+  }
+  console.log(factorProducts);
+  return (
+    <>
+      <Router>
+        <Switch>
+          <Route path={`/products/${path}`}>
+            <ProductDetails
+              product={product}
+              handleAddProduct={handleAddProduct}
+              signedUser={signedUser}
+              factorProducts={factorProducts}
+              handleFactorVisibility={handleFactorVisibility}
+            />
+            <Factor
+              factorProducts={factorProducts}
+              handleIncDec={handleIncDec}
+              handleRemove={handleRemove}
+              openDialog={openDialog}
+              totalPrice={totalPrice}
+              handleClear={handleClear}
+              factorVisibility={factorVisibility}
+              handleFactorVisibility={handleFactorVisibility}
+            />
+          </Route>
+          <Route path="/sign">
+            <SingAndLogin
+              username={user.username}
+              password={user.password}
+              email={user.email}
+              handleInputChange={handleInputChange}
+              handleSignIn={handleSignIn}
+              handleSignUp={handleSignUp}
+            />
+          </Route>
+          <Route path="/">
+            <Navbar
+              signedUser={signedUser}
+              factorProducts={factorProducts}
+              handleFactorVisibility={handleFactorVisibility}
+            />
+            <Header />
+            <>
+              <OurProducts />
+              <ProductMapper
                 factorProducts={factorProducts}
-                handleFactorVisibility={this.handleFactorVisibility}
+                products={products}
+                handleAddProduct={handleAddProduct}
+                handlePath={handlePath}
               />
               <Factor
                 factorProducts={factorProducts}
-                handleIncDec={this.handleIncDec}
-                handleRemove={this.handleRemove}
-                openDialog={this.openDialog}
+                handleIncDec={handleIncDec}
+                handleRemove={handleRemove}
+                openDialog={openDialog}
                 totalPrice={totalPrice}
-                handleClear={this.handleClear}
+                handleClear={handleClear}
                 factorVisibility={factorVisibility}
-                handleFactorVisibility={this.handleFactorVisibility}
+                handleFactorVisibility={handleFactorVisibility}
               />
-            </Route>
-            <Route path="/sign">
-              <SingAndLogin
-                username={username}
-                password={password}
-                handleInputChange={this.handleInputChange}
-                handleSignIn={this.handleSignIn}
-                handleSignUp={this.handleSignUp}
+              <BuyCarts
+                totalPrice={totalPrice}
+                closeDialog={closeDialog}
+                isDialogOpen={isDialogOpen}
+                handleClear={handleClear}
               />
-            </Route>
-            <Route path="/">
-              <Navbar
-                signedUser={signedUser}
-                factorProducts={factorProducts}
-                handleFactorVisibility={this.handleFactorVisibility}
-              />
-              <Header handleMode={this.handleMode} />
-              <>
-                <OurProducts />
-                <ProductMapper
-                  factorProducts={factorProducts}
-                  products={products}
-                  handleAddProduct={this.handleAddProduct}
-                  handlePath={this.handlePath}
-                />
-                <Factor
-                  factorProducts={factorProducts}
-                  handleIncDec={this.handleIncDec}
-                  handleRemove={this.handleRemove}
-                  openDialog={this.openDialog}
-                  totalPrice={totalPrice}
-                  handleClear={this.handleClear}
-                  factorVisibility={factorVisibility}
-                  handleFactorVisibility={this.handleFactorVisibility}
-                />
-                <BuyCarts
-                  totalPrice={totalPrice}
-                  closeDialog={this.closeDialog}
-                  isDialogOpen={isDialogOpen}
-                  handleClear={this.handleClear}
-                />
-              </>
-            </Route>
-          </Switch>
-        </Router>
-      </>
-    );
-  }
-}
-
+            </>
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
+};
 export default App;

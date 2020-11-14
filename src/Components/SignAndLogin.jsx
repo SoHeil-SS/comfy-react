@@ -51,22 +51,14 @@ const SingAndLogin = ({
             placeholder="Password"
           ></input>
         </div>
-        <Link
-          to="/"
-          className="btn btn-danger"
-          onClick={(e) => {
-            handleSignIn();
-          }}
-        >
+        <Link to="/" className="btn btn-danger" onClick={handleSignIn}>
           Sign in
         </Link>
         <Link
           to="/"
           type="button"
           style={{ marginLeft: "20px" }}
-          onClick={() => {
-            handleSignUp();
-          }}
+          onClick={handleSignUp}
           className="btn btn-primary"
         >
           Sign up

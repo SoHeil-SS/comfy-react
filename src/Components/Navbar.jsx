@@ -8,6 +8,7 @@ const Navbar = ({
 }) => {
   function basket() {
     let basket = 0;
+
     factorProducts.forEach((p) => {
       basket += p.inCart;
     });
