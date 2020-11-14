@@ -25,7 +25,16 @@ const App = () => {
   const [signedUser, setSignedUser] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [path, setPath] = useState(null);
-
+  const [{ data, loading },dispatch] = useReducer(reducer, {
+    data: null,
+    loading: true,
+  });
+  useEffect(()=>{
+    fetch().then(data)=>{
+      '0'
+    }26
+    5012.
+  })
   useEffect(() => {
     fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
       .then((response) => response.json())
@@ -123,6 +132,8 @@ const App = () => {
 
   const handleInputChange = (e) => {
     const name = e.target.name;
+    const user = null;
+    //[name] = e.target.value;
     setUser((user[name] = e.target.value));
     //TODO
     setUser({
