@@ -23,7 +23,6 @@ const ProductDetails = ({
         factorProducts={factorProducts}
         handleFactorVisibility={handleFactorVisibility}
       />
-
       <article className="product">
         <div className="img-container">
           <Link to="/">
@@ -97,3 +96,5 @@ const ProductDetails = ({
 };
 
 export default ProductDetails;
+
+//TODO change ProductItem to reusable component

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 
 import userRepository from "./Core/UserRepository";
 import Navbar from "./Components/Navbar";
@@ -11,6 +10,7 @@ import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
 import ProductDetails from "./Components/ProductDetails";
+import Loading from "./Components/Spinner";
 
 const App = () => {
   const [product, setProduct] = useState(null);
@@ -18,23 +18,11 @@ const App = () => {
   const [factorProducts, setFactorProducts] = useState([]);
   const [factorVisibility, setFactorVisibility] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [user, setUser] = useState({ username: "", password: " ", email: "" });
   const [signedUser, setSignedUser] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [path, setPath] = useState(null);
-  const [{ data, loading },dispatch] = useReducer(reducer, {
-    data: null,
-    loading: true,
-  });
-  useEffect(()=>{
-    fetch().then(data)=>{
-      '0'
-    }26
-    5012.
-  })
+
   useEffect(() => {
     fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
       .then((response) => response.json())
@@ -132,18 +120,10 @@ const App = () => {
 
   const handleInputChange = (e) => {
     const name = e.target.name;
-    const user = null;
-    //[name] = e.target.value;
-    setUser((user[name] = e.target.value));
-    //TODO
-    setUser({
-      [name]: e.target.value,
-      [name]: e.target.value,
-      [name]: e.target.value,
-    });
+    setUser({ ...user, [name]: e.target.value });
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = (e) => {
     console.log(user.username);
     const userInRepository = userRepository.users.find(
       (u) => u.username === user.username
@@ -155,10 +135,15 @@ const App = () => {
         password: user.password,
       });
       setUser({ username: "", email: "", password: "" });
-    } else alert("user not find");
+    } else {
+      setUser({ username: "", email: "", password: "" });
+
+      alert("user not find");
+      e.preventDefault();
+    }
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = (e) => {
     const userInRepository = userRepository.users.filter(
       (u) => u.username === user.username
     );
@@ -166,6 +151,7 @@ const App = () => {
       alert("please enter another username...");
       console.log(userInRepository);
       setUser({ username: "", email: "", password: "" });
+      e.preventDefault();
       return;
     }
     userRepository.add(user.username, user.email, user.password);
@@ -179,23 +165,8 @@ const App = () => {
 
   console.log("render");
   if (!products) {
-    return (
-      <Spinner
-        style={{
-          marginLeft: "42%",
-          marginTop: "20%",
-          width: "250px",
-          height: "250px",
-        }}
-        animation="border"
-        role="status"
-        variant="danger"
-      >
-        <span className="sr-only">Loading...</span>
-      </Spinner>
-    );
+    return <Loading />;
   }
-  console.log(factorProducts);
   return (
     <>
       <Router>
