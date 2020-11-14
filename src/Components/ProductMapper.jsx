@@ -7,13 +7,13 @@ const ProductMapper = ({ products, handleAddProduct, handlePath }) => {
     return (
       <ProductItem
         key={product.id}
-        title={product.title}
+        text={product.title}
         price={product.price}
         image={product.image}
         alt={product.title}
-        product={product}
-        handlePath={() => handlePath(product, product.title)}
-        handleAddProduct={(product) => handleAddProduct(product, product.id)}
+        path={`/products/${product.title}`}
+        handlePath={(path) => handlePath(product, path)}
+        handleAddProduct={() => handleAddProduct(product, product.id)}
       />
     );
   });

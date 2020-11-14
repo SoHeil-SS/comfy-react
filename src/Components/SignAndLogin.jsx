@@ -29,7 +29,7 @@ const SingAndLogin = ({
             className="form-control"
             aria-describedby="emailHelp"
             placeholder="Email address"
-          ></input>
+          />
         </div>
         <div className="form-group">
           <input
@@ -39,7 +39,7 @@ const SingAndLogin = ({
             onChange={handleInputChange}
             className="form-control"
             placeholder="Username"
-          ></input>
+          />
         </div>
         <div className="form-group">
           <input
@@ -49,7 +49,7 @@ const SingAndLogin = ({
             onChange={handleInputChange}
             className="form-control"
             placeholder="Password"
-          ></input>
+          />
         </div>
         <Link to="/" className="btn btn-danger" onClick={handleSignIn}>
           Sign in

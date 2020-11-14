@@ -1,0 +1,4 @@
+
+useRef
+useMemo : shouldComponentUpdate !
+useCallBack : shouldComponentUpdate 

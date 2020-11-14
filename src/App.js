@@ -18,10 +18,10 @@ const App = () => {
   const [factorProducts, setFactorProducts] = useState([]);
   const [factorVisibility, setFactorVisibility] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [user, setUser] = useState({ username: "", password: " ", email: "" });
+  const [user, setUser] = useState({ username: "", email: "", password: "" });
   const [signedUser, setSignedUser] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [path, setPath] = useState(null);
+  const [path, setPath] = useState("/products");
 
   useEffect(() => {
     fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
@@ -56,6 +56,7 @@ const App = () => {
   };
 
   const handlePath = (product, path) => {
+    console.log(path);
     setProduct(product);
     setPath(path);
   };
@@ -171,12 +172,13 @@ const App = () => {
     <>
       <Router>
         <Switch>
-          <Route path={`/products/${path}`}>
+          <Route path={path}>
             <ProductDetails
               product={product}
               handleAddProduct={handleAddProduct}
               signedUser={signedUser}
               factorProducts={factorProducts}
+              handlePath={handlePath}
               handleFactorVisibility={handleFactorVisibility}
             />
             <Factor
