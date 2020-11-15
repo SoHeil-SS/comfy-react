@@ -1,17 +1,17 @@
 import { createContext } from "react";
 const Contexts = createContext({
-  factorVisibility: "",
-  factorProducts: [],
-  handleRemove: () => {},
-  handleState: () => {},
-  handleIncDec: () => {},
-  openDialog: () => {},
   isDialogOpen: "",
-  handlePath: () => {},
+  factorVisibility: "",
   signedUser: "",
-  totalPrice: () => {},
-  handleClear: () => {},
-  handleFactorVisibility: () => {},
+  factorProducts: [],
+  openDialog: () => {},
+  handleState: () => {},
+  handlePath: () => {},
   handleAddProduct: () => {},
+  handleIncDec: () => {},
+  handleRemove: () => {},
+  handleClear: () => {},
+  handleTotalPrice: () => {},
+  handleFactorVisibility: () => {},
 });
 export default Contexts;
