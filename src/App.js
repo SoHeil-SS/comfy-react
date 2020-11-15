@@ -9,7 +9,7 @@ import Factor from "./Components/Factor";
 import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
-import ProductDetails from "./Components/FactorComponents/FactorContent";
+import ProductDetails from "./Components/ProductDetails";
 import Loading from "./Components/Loading";
 const App = () => {
   const [product, setProduct] = useState(null);
@@ -56,6 +56,7 @@ const App = () => {
 
   const handlePath = (product, path) => {
     setProduct(product);
+    console.log(path);
     if (path === "/") {
       setPath("product");
     } else setPath(path);
@@ -168,7 +169,7 @@ const App = () => {
   if (!products) {
     return <Loading />;
   }
-
+  console.log(path);
   return (
     <>
       <Router>
