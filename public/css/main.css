@@ -263,7 +263,7 @@ body {
 }
 
 .product-img {
-  display: block;
+  display: grid;
   width: 100%;
   min-height: 12rem;
   transition: var(--mainTransition);

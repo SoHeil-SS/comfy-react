@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+
 import contexts from "../../contexts";
 
 const FactorFooter = () => {
