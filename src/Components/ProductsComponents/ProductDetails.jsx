@@ -16,7 +16,7 @@ const ProductDetails = ({ product }) => {
         price={product.title}
         image={product.image}
         alt={product.alt}
-        handleAddProduct={() => handleAddProduct(product)}
+        handleAddProduct={() => handleAddProduct(product, product.id)}
         to="/"
         handlePath={() => handlePath(product, "/")}
       />

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import Contexts from "../Contexts";
 
 const Navbar = () => {
-  const { factorProducts, handleFactorVisibility, signedUser } = useContext(
-    Contexts
-  );
+  const {
+    factorProducts,
+    handleFactorVisibility,
+    signedUser,
+    handlePath,
+  } = useContext(Contexts);
   function basket() {
     let basket = 0;
 

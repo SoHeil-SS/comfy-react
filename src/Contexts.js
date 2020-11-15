@@ -3,6 +3,7 @@ const Contexts = createContext({
   isDialogOpen: "",
   factorVisibility: "",
   signedUser: "",
+  totalPrice: "",
   factorProducts: [],
   openDialog: () => {},
   handleState: () => {},
@@ -11,7 +12,6 @@ const Contexts = createContext({
   handleIncDec: () => {},
   handleRemove: () => {},
   handleClear: () => {},
-  handleTotalPrice: () => {},
   handleFactorVisibility: () => {},
 });
 export default Contexts;

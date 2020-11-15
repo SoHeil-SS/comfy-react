@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import userRepository from "./Core/UserRepository";
+import Contexts from "./Contexts";
+import fetch from "./server";
+
+import Loader from "./Components/Loader";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
 import ProductMapper from "./Components/ProductsComponents/ProductMapper.jsx";
@@ -10,8 +14,7 @@ import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
 import ProductDetails from "./Components/ProductsComponents/ProductDetails";
-import Loading from "./Components/Loading";
-import Contexts from "./Contexts";
+
 const App = () => {
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
@@ -21,28 +24,23 @@ const App = () => {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
   const [signedUser, setSignedUser] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [path, setPath] = useState("/products");
+  const [productPath, setProductPath] = useState("/none");
 
   useEffect(() => {
-    fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
-      .then((response) => response.json())
+    fetch()
       .then((response) =>
-        response.items.map((p) => {
+        response.items.map((item) => {
           return {
-            title: p.fields.title,
-            id: p.sys.id,
-            price: p.fields.price,
-            image: p.fields.image.fields.file.url,
-            alt: p.fields.title,
+            title: item.fields.title,
+            id: item.sys.id,
+            price: item.fields.price,
+            image: item.fields.image.fields.file.url,
+            alt: item.fields.title,
             // inStock: p.fields.inStock,
           };
         })
       )
-      .then((products) =>
-        setTimeout(() => {
-          setProducts(products);
-        }, 750)
-      );
+      .then((products) => setTimeout(() => setProducts(products), 750));
   }, []);
 
   const handleState = (factorProducts) => {
@@ -59,8 +57,8 @@ const App = () => {
     setProduct(product);
     console.log(path);
     if (path === "/") {
-      setPath("product");
-    } else setPath(path);
+      setProductPath("/none");
+    } else setProductPath(path);
   };
 
   const handleAddProduct = (product, id) => {
@@ -168,29 +166,38 @@ const App = () => {
 
   console.log("render");
   if (!products) {
-    return <Loading />;
+    return (
+      <Loader
+        style={{
+          marginLeft: "42%",
+          marginTop: "20%",
+          width: "250px",
+          height: "250px",
+        }}
+      />
+    );
   }
   return (
     <Contexts.Provider
       value={{
-        factorProducts,
-        handleRemove,
-        handleState,
-        handleIncDec,
-        openDialog,
         isDialogOpen,
-        totalPrice,
-        signedUser,
-        handlePath,
-        handleClear,
         factorVisibility,
-        handleFactorVisibility,
+        signedUser,
+        totalPrice,
+        factorProducts,
+        openDialog,
+        handlePath,
+        handleState,
         handleAddProduct,
+        handleIncDec,
+        handleRemove,
+        handleClear,
+        handleFactorVisibility,
       }}
     >
       <Router>
         <Switch>
-          <Route path={path}>
+          <Route path={productPath}>
             <ProductDetails product={product} />
             <Factor />
           </Route>
@@ -207,12 +214,10 @@ const App = () => {
           <Route path="/">
             <Navbar />
             <Header />
-            <>
-              <OurProducts />
-              <ProductMapper products={products} />
-              <Factor />
-              <BuyCarts />
-            </>
+            <OurProducts />
+            <ProductMapper products={products} />
+            <Factor />
+            <BuyCarts />
           </Route>
         </Switch>
       </Router>
