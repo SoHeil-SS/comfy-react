@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import userRepository from "./Core/UserRepository";
@@ -9,8 +9,7 @@ import Factor from "./Components/Factor";
 import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
-import ProductDetails from "./Components/ProductDetails";
-import Loading from "./Components/Spinner";
+import ProductDetails from "./Components/FactorComponents/FactorContent";
 
 const App = () => {
   const [product, setProduct] = useState(null);
@@ -56,9 +55,10 @@ const App = () => {
   };
 
   const handlePath = (product, path) => {
-    console.log(path);
     setProduct(product);
-    setPath(path);
+    if (path === "/") {
+      setPath("product");
+    } else setPath(path);
   };
 
   const handleAddProduct = (product, id) => {
@@ -168,10 +168,12 @@ const App = () => {
   if (!products) {
     return <Loading />;
   }
+
   return (
     <>
       <Router>
         <Switch>
+          <a href=""></a>
           <Route path={path}>
             <ProductDetails
               product={product}
@@ -216,6 +218,7 @@ const App = () => {
                 products={products}
                 handleAddProduct={handleAddProduct}
                 handlePath={handlePath}
+                value=""
               />
               <Factor
                 factorProducts={factorProducts}

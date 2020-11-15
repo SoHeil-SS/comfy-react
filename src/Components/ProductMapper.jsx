@@ -11,8 +11,8 @@ const ProductMapper = ({ products, handleAddProduct, handlePath }) => {
         price={product.price}
         image={product.image}
         alt={product.title}
-        path={`/products/${product.title}`}
-        handlePath={(path) => handlePath(product, path)}
+        to={`/products/${product.title}`}
+        handlePath={() => handlePath(product, `/products/${product.title}`)}
         handleAddProduct={() => handleAddProduct(product, product.id)}
       />
     );
