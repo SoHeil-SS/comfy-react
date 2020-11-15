@@ -7,20 +7,20 @@ const ProductItem = ({
   image,
   alt,
   handleAddProduct,
-  path,
+  to,
   style,
   handlePath,
 }) => {
   return (
     <article className="product">
       <div className="img-container">
-        <Link to={path}>
+        <Link to={to}>
           <img
             style={style && style.img}
             className="product-img"
             src={image}
             alt={alt}
-            onClick={() => handlePath(path)}
+            onClick={handlePath}
           />
         </Link>
         <button onClick={handleAddProduct} className="bag-btn">

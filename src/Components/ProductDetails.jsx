@@ -31,8 +31,7 @@ const ProductDetails = ({
         image={product.image}
         alt={product.alt}
         handleAddProduct={() => handleAddProduct(product)}
-        path={"/"}
-        style={{}}
+        to="/"
         handlePath={() => handlePath(product, "/")}
       />
       <Factor
