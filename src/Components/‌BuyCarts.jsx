@@ -1,5 +1,7 @@
 import React from "react";
+import { useContext } from "react";
 import Modal from "react-modal";
+import Contexts from "../Contexts";
 
 const modalStyle = {
   content: {
@@ -21,7 +23,10 @@ const btnStyle = {
 
 Modal.setAppElement("#root");
 
-const BuyCarts = ({ totalPrice, closeDialog, isDialogOpen, handleClear }) => {
+const BuyCarts = () => {
+  const { totalPrice, closeDialog, isDialogOpen, handleClear } = useContext(
+    Contexts
+  );
   let subtitle;
   function afterOpenModal() {
     subtitle.style.color = "black";

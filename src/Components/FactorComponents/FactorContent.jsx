@@ -1,15 +1,11 @@
 import React from "react";
 
-import FactorMapper from "../FactorMapper";
+import FactorMapper from "./FactorMapper";
 
-const FactorContent = ({ factorProducts, handleIncDec, handleRemove }) => {
+const FactorContent = () => {
   return (
     <div className="cart-content">
-      <FactorMapper
-        factorProducts={factorProducts}
-        handleIncDec={handleIncDec}
-        handleRemove={handleRemove}
-      />
+      <FactorMapper />
     </div>
   );
 };

@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import userRepository from "./Core/UserRepository";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
-import ProductMapper from "./Components/ProductMapper";
-import Factor from "./Components/Factor";
+import ProductMapper from "./Components/ProductsComponents/ProductMapper.jsx";
+import Factor from "./Components/FactorComponents/Factor";
 import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
-import ProductDetails from "./Components/ProductDetails";
+import ProductDetails from "./Components/ProductsComponents/ProductDetails";
 import Loading from "./Components/Loading";
+import Contexts from "./Contexts";
 const App = () => {
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
@@ -169,30 +170,29 @@ const App = () => {
   if (!products) {
     return <Loading />;
   }
-  console.log(path);
   return (
-    <>
+    <Contexts.Provider
+      value={{
+        factorProducts,
+        handleRemove,
+        handleState,
+        handleIncDec,
+        openDialog,
+        isDialogOpen,
+        totalPrice,
+        signedUser,
+        handlePath,
+        handleClear,
+        factorVisibility,
+        handleFactorVisibility,
+        handleAddProduct,
+      }}
+    >
       <Router>
         <Switch>
           <Route path={path}>
-            <ProductDetails
-              product={product}
-              handleAddProduct={handleAddProduct}
-              signedUser={signedUser}
-              factorProducts={factorProducts}
-              handlePath={handlePath}
-              handleFactorVisibility={handleFactorVisibility}
-            />
-            <Factor
-              factorProducts={factorProducts}
-              handleIncDec={handleIncDec}
-              handleRemove={handleRemove}
-              openDialog={openDialog}
-              totalPrice={totalPrice}
-              handleClear={handleClear}
-              factorVisibility={factorVisibility}
-              handleFactorVisibility={handleFactorVisibility}
-            />
+            <ProductDetails product={product} />
+            <Factor />
           </Route>
           <Route path="/sign">
             <SingAndLogin
@@ -205,42 +205,18 @@ const App = () => {
             />
           </Route>
           <Route path="/">
-            <Navbar
-              signedUser={signedUser}
-              factorProducts={factorProducts}
-              handleFactorVisibility={handleFactorVisibility}
-            />
+            <Navbar />
             <Header />
             <>
               <OurProducts />
-              <ProductMapper
-                factorProducts={factorProducts}
-                products={products}
-                handleAddProduct={handleAddProduct}
-                handlePath={handlePath}
-                value=""
-              />
-              <Factor
-                factorProducts={factorProducts}
-                handleIncDec={handleIncDec}
-                handleRemove={handleRemove}
-                openDialog={openDialog}
-                totalPrice={totalPrice}
-                handleClear={handleClear}
-                factorVisibility={factorVisibility}
-                handleFactorVisibility={handleFactorVisibility}
-              />
-              <BuyCarts
-                totalPrice={totalPrice}
-                closeDialog={closeDialog}
-                isDialogOpen={isDialogOpen}
-                handleClear={handleClear}
-              />
+              <ProductMapper products={products} />
+              <Factor />
+              <BuyCarts />
             </>
           </Route>
         </Switch>
       </Router>
-    </>
+    </Contexts.Provider>
   );
 };
 export default App;

@@ -1,11 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Contexts from "../Contexts";
 
-const Navbar = ({
-  signedUser,
-  factorProducts = [],
-  handleFactorVisibility,
-}) => {
+const Navbar = () => {
+  const { factorProducts, handleFactorVisibility, signedUser } = useContext(
+    Contexts
+  );
   function basket() {
     let basket = 0;
 
