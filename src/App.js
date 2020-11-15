@@ -56,7 +56,10 @@ const App = () => {
 
   const handlePath = (product, path) => {
     setProduct(product);
+<<<<<<< HEAD
     console.log(path);
+=======
+>>>>>>> a2637ed456a25e4f52e1354498f4f2a2069c75df
     if (path === "/") {
       setPath("product");
     } else setPath(path);
@@ -169,11 +172,16 @@ const App = () => {
   if (!products) {
     return <Loading />;
   }
+<<<<<<< HEAD
   console.log(path);
+=======
+
+>>>>>>> a2637ed456a25e4f52e1354498f4f2a2069c75df
   return (
     <>
       <Router>
         <Switch>
+          <a href=""></a>
           <Route path={path}>
             <ProductDetails
               product={product}
