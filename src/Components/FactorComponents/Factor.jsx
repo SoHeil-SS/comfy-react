@@ -4,10 +4,10 @@ import FactorHeader from "./FactorHeader";
 import FactorContent from "./FactorContent";
 import FactorFooter from "./FactorFooter";
 import { useContext } from "react";
-import Contexts from "../../Contexts";
+import contexts from "../../contexts";
 
 const Factor = () => {
-  const { factorVisibility } = useContext(Contexts);
+  const { factorVisibility } = useContext(contexts);
   return (
     <div className={factorVisibility ? "cart showCart" : "cart"}>
       <FactorHeader />

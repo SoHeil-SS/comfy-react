@@ -1,5 +1,5 @@
 import { createContext } from "react";
-const Contexts = createContext({
+const contexts = createContext({
   isDialogOpen: "",
   factorVisibility: "",
   signedUser: "",
@@ -14,4 +14,4 @@ const Contexts = createContext({
   handleClear: () => {},
   handleFactorVisibility: () => {},
 });
-export default Contexts;
+export default contexts;

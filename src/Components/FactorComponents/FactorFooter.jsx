@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import Contexts from "../../Contexts";
+import contexts from "../../contexts";
 
 const FactorFooter = () => {
   const { factorProducts, handleClear, openDialog, totalPrice } = useContext(
-    Contexts
+    contexts
   );
 
   let btnStyle = null;

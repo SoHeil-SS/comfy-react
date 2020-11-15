@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import Contexts from "../../Contexts";
+import contexts from "../../contexts";
 import FactorItem from "./FactorItem";
 
 const FactorMapper = () => {
-  const { factorProducts, handleIncDec, handleRemove } = useContext(Contexts);
+  const { factorProducts, handleIncDec, handleRemove } = useContext(contexts);
   const Carts = factorProducts.map((p) => {
     return (
       <FactorItem

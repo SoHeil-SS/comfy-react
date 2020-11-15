@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingAndLogin = ({
-  handleInputChange,
-  handleSignIn,
-  handleSignUp,
   email,
   username,
   password,
+  handleInputChange,
+  handleSignIn,
+  handleSignUp,
 }) => {
   return (
     <div

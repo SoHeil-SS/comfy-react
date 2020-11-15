@@ -1,9 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import Contexts from "../../Contexts";
+
+import contexts from "../../contexts";
 
 const FactorHeader = () => {
-  const { handleFactorVisibility } = useContext(Contexts);
+  const { handleFactorVisibility } = useContext(contexts);
   return (
     <>
       <span className="close-cart">

@@ -1,16 +1,18 @@
 import React from "react";
-
-import ProductItem from "./ProductItem";
-import Factor from "../FactorComponents/Factor";
-import Navbar from "../Navbar";
 import { useContext } from "react";
-import Contexts from "../../Contexts";
+
+import contexts from "../../contexts";
+
+import Navbar from "../Navbar";
+import Factor from "../FactorComponents/Factor";
+import ProductItem from "./ProductItem";
 
 const ProductDetails = ({ product }) => {
-  const { handleAddProduct, handlePath } = useContext(Contexts);
+  const { handleAddProduct, handlePath } = useContext(contexts);
   return (
     <div>
       <Navbar />
+      <Factor />
       <ProductItem
         text={product.title}
         price={product.title}
@@ -20,7 +22,6 @@ const ProductDetails = ({ product }) => {
         to="/"
         handlePath={() => handlePath(product, "/")}
       />
-      <Factor />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import userRepository from "./Core/UserRepository";
-import Contexts from "./Contexts";
+import contexts from "./contexts";
 import fetch from "./server";
 
 import Loader from "./Components/Loader";
@@ -55,7 +55,6 @@ const App = () => {
 
   const handlePath = (product, path) => {
     setProduct(product);
-    console.log(path);
     if (path === "/") {
       setProductPath("/none");
     } else setProductPath(path);
@@ -125,7 +124,6 @@ const App = () => {
   };
 
   const handleSignIn = (e) => {
-    console.log(user.username);
     const userInRepository = userRepository.users.find(
       (u) => u.username === user.username
     );
@@ -143,14 +141,13 @@ const App = () => {
       e.preventDefault();
     }
   };
-
+  //TODO 2in1 handleSing
   const handleSignUp = (e) => {
     const userInRepository = userRepository.users.filter(
       (u) => u.username === user.username
     );
     if (userInRepository.length) {
       alert("please enter another username...");
-      console.log(userInRepository);
       setUser({ username: "", email: "", password: "" });
       e.preventDefault();
       return;
@@ -178,7 +175,7 @@ const App = () => {
     );
   }
   return (
-    <Contexts.Provider
+    <contexts.Provider
       value={{
         isDialogOpen,
         factorVisibility,
@@ -203,9 +200,9 @@ const App = () => {
           </Route>
           <Route path="/sign">
             <SingAndLogin
+              email={user.email}
               username={user.username}
               password={user.password}
-              email={user.email}
               handleInputChange={handleInputChange}
               handleSignIn={handleSignIn}
               handleSignUp={handleSignUp}
@@ -221,7 +218,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </Contexts.Provider>
+    </contexts.Provider>
   );
 };
 export default App;

@@ -1,14 +1,14 @@
 import React from "react";
 import { ScrollTo } from "react-scroll-to";
 
+const headerStyle = {
+  minHeight: "calc(100vh - 60px)",
+  background: "url('./images/hero-bcg.jpeg') center/cover no-repeat",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
 const Header = () => {
-  const headerStyle = {
-    minHeight: "calc(100vh - 60px)",
-    background: "url('./images/hero-bcg.jpeg') center/cover no-repeat",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
   return (
     <>
       <div>

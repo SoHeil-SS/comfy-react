@@ -1,11 +1,12 @@
 import React from "react";
 import { useContext } from "react";
-import Contexts from "../../Contexts";
+
+import contexts from "../../contexts";
 
 import ProductItem from "./ProductItem";
 
 const ProductMapper = ({ products }) => {
-  const { handleAddProduct, handlePath } = useContext(Contexts);
+  const { handleAddProduct, handlePath } = useContext(contexts);
   const Products = products.map((product) => {
     return (
       <ProductItem

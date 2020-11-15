@@ -6,9 +6,9 @@ const ProductItem = ({
   price,
   image,
   alt,
-  handleAddProduct,
   to,
   style,
+  handleAddProduct,
   handlePath,
 }) => {
   return (
