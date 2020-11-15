@@ -9,7 +9,7 @@ import Loader from "./Components/Loader";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
 import ProductMapper from "./Components/ProductsComponents/ProductMapper.jsx";
-import Factor from "./Components/FactorComponents/Factor";
+import FactorContent from "./Components/FactorComponents/FactorContent";
 import BuyCarts from "./Components/‌BuyCarts";
 import SingAndLogin from "./Components/SignAndLogin";
 import OurProducts from "./Components/OurProducts";
@@ -196,7 +196,7 @@ const App = () => {
         <Switch>
           <Route path={productPath}>
             <ProductDetails product={product} />
-            <Factor />
+            <FactorContent />
           </Route>
           <Route path="/sign">
             <SingAndLogin
@@ -213,7 +213,7 @@ const App = () => {
             <Header />
             <OurProducts />
             <ProductMapper products={products} />
-            <Factor />
+            <FactorContent />
             <BuyCarts />
           </Route>
         </Switch>

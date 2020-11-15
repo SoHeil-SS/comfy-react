@@ -4,7 +4,7 @@ import { useContext } from "react";
 import contexts from "../../contexts";
 
 import Navbar from "../Navbar";
-import Factor from "../FactorComponents/Factor";
+import FactorContent from "../FactorComponents/FactorContent";
 import ProductItem from "./ProductItem";
 
 const ProductDetails = ({ product }) => {
@@ -12,7 +12,7 @@ const ProductDetails = ({ product }) => {
   return (
     <div>
       <Navbar />
-      <Factor />
+      <FactorContent />
       <ProductItem
         text={product.title}
         price={product.title}
