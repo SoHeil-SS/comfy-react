@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import userRepository from "./Core/UserRepository";
 import contexts from "./contexts";
-import fetch from "./server";
+import fetch from "./Core/server";
 
 import Loader from "./Components/Loader";
 import Navbar from "./Components/Navbar";
@@ -43,7 +43,7 @@ const App = () => {
       .then((products) => setTimeout(() => setProducts(products), 750));
   }, []);
 
-  const handleState = (factorProducts) => {
+  function handleState(factorProducts) {
     totalPriceFn(factorProducts);
     if (!factorProducts.length) {
       setFactorProducts(factorProducts);
@@ -51,16 +51,16 @@ const App = () => {
     } else {
       setFactorProducts(factorProducts);
     }
-  };
+  }
 
-  const handlePath = (product, path) => {
+  function handlePath(product, path) {
     setProduct(product);
     if (path === "/") {
       setProductPath("/none");
     } else setProductPath(path);
-  };
+  }
 
-  const handleAddProduct = (product, id) => {
+  function handleAddProduct(product, id) {
     const factorCarts = [...factorProducts];
     const index = factorCarts.findIndex((p) => p.id === id);
     if (index === -1) {
@@ -72,9 +72,9 @@ const App = () => {
       handleIncDec(id, +1);
     }
     handleState(factorCarts);
-  };
+  }
 
-  const handleIncDec = (id, op) => {
+  function handleIncDec(id, op) {
     let factorCarts = [...factorProducts];
     const index = factorCarts.findIndex((p) => p.id === id);
     factorCarts[index].inCart = factorCarts[index].inCart + op;
@@ -85,45 +85,49 @@ const App = () => {
         factorCarts[index].inCart * factorCarts[index].price;
     }
     handleState(factorCarts);
-  };
+  }
 
-  const handleRemove = (id) => {
+  function handleRemove(id) {
     const factorCarts = [...factorProducts].filter((p) => p.id !== id);
     handleState(factorCarts);
-  };
+  }
 
-  const openDialog = () => {
+  function openDialog() {
     handleFactorVisibility();
     setTimeout(() => {
       setIsDialogOpen(true);
     }, 650);
-  };
+  }
 
-  const closeDialog = () => setIsDialogOpen(false);
+  function closeDialog() {
+    setIsDialogOpen(false);
+  }
 
-  const handleFactorVisibility = () => setFactorVisibility(!factorVisibility);
+  function handleFactorVisibility() {
+    setFactorVisibility(!factorVisibility);
+  }
 
-  const handleClear = () => {
+  function handleClear() {
     closeDialog();
     setFactorProducts([]);
     setFactorVisibility(false);
-  };
+  }
 
-  const totalPriceFn = (factorProducts) => {
+  function totalPriceFn(factorProducts) {
     let totalPrice = 0;
     factorProducts.forEach((p) => {
       totalPrice += p.total;
     });
     setFactorProducts(factorProducts);
     setTotalPrice(totalPrice);
-  };
+  }
 
-  const handleInputChange = (e) => {
+  function handleInputChange(e) {
     const name = e.target.name;
     setUser({ ...user, [name]: e.target.value });
-  };
+  }
 
-  const handleSignIn = (e) => {
+  function handleSignIn(e) {
     const userInRepository = userRepository.users.find(
       (u) => u.username === user.username
     );
@@ -140,9 +144,9 @@ const App = () => {
       alert("user not find");
       e.preventDefault();
     }
-  };
+  }
   //TODO 2in1 handleSing
-  const handleSignUp = (e) => {
+  function handleSignUp(e) {
     const userInRepository = userRepository.users.filter(
       (u) => u.username === user.username
     );
@@ -159,7 +163,7 @@ const App = () => {
       password: user.password,
     });
     setUser({ username: "", email: "", password: "" });
-  };
+  }
 
   console.log("render");
   if (!products) {
