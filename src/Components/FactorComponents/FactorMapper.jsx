@@ -1,24 +1,29 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
-import contexts from "../../contexts";
+import Contexts from "../../contexts";
+import { incAndDecProduct } from "../../StateManager/actions";
+
 import FactorItem from "./FactorItem";
 
 const FactorMapper = () => {
-  const { factorProducts, handleIncDec, handleRemove } = useContext(contexts);
-  const Carts = factorProducts.map((p) => {
+  const { factorProducts, dispatch } = useContext(Contexts);
+  const Carts = factorProducts.map((product) => {
+    const { id, title, image, inCart } = product;
     return (
       <FactorItem
-        key={p.id}
-        title={p.title}
-        total={p.total}
-        image={p.image}
-        inCart={p.inCart}
-        handleIncDec={(op) => handleIncDec(p.id, op)}
-        handleRemove={() => handleRemove(p.id)}
+        key={id}
+        title={title}
+        total={product.price * product.inCart}
+        image={image}
+        inCart={inCart}
+        handleIncDecProduct={(op) => dispatch(incAndDecProduct({ id, op }))}
+        handleRemoveProduct={() =>
+          dispatch(incAndDecProduct({ id, op: -inCart }))
+        }
       />
     );
   });
-  return <>{Carts}</>;
+  return <div className="cart-content">{Carts}</div>;
 };
 
 export default FactorMapper;

@@ -1,17 +1,8 @@
 import { createContext } from "react";
-const contexts = createContext({
-  isDialogOpen: "",
+const Contexts = createContext({
+  dispatch: () => {},
+  products: [],
   factorVisibility: "",
-  signedUser: "",
   totalPrice: "",
-  factorProducts: [],
-  openDialog: () => {},
-  handleState: () => {},
-  handlePath: () => {},
-  handleAddProduct: () => {},
-  handleIncDec: () => {},
-  handleRemove: () => {},
-  handleClear: () => {},
-  handleFactorVisibility: () => {},
 });
-export default contexts;
+export default Contexts;

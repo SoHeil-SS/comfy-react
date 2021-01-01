@@ -1,12 +1,10 @@
-import React from "react";
-
 const FactorItem = ({
   title,
   total,
   image,
   inCart,
-  handleIncDec,
-  handleRemove,
+  handleIncDecProduct,
+  handleRemoveProduct,
 }) => {
   return (
     <div className="cart-item">
@@ -14,14 +12,20 @@ const FactorItem = ({
       <div>
         <h4>{title} </h4>
         <h5>{total}</h5>
-        <span className="remove-item" onClick={handleRemove}>
+        <span className="remove-item" onClick={handleRemoveProduct}>
           Remove
         </span>
       </div>
       <div>
-        <i className="fas fa-chevron-up" onClick={() => handleIncDec(+1)} />
+        <i
+          className="fas fa-chevron-up"
+          onClick={() => handleIncDecProduct(+1)}
+        />
         <p className="item-amount">{inCart}</p>
-        <i className="fas fa-chevron-down" onClick={() => handleIncDec(-1)} />
+        <i
+          className="fas fa-chevron-down"
+          onClick={() => handleIncDecProduct(-1)}
+        />
       </div>
     </div>
   );

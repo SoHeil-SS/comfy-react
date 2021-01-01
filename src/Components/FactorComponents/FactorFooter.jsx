@@ -1,13 +1,4 @@
-import React from "react";
-import { useContext } from "react";
-
-import contexts from "../../contexts";
-
-const FactorFooter = () => {
-  const { factorProducts, handleClear, openDialog, totalPrice } = useContext(
-    contexts
-  );
-
+const FactorFooter = ({ factorProducts, handleClear, totalPrice }) => {
   let btnStyle = null;
   !factorProducts.length
     ? (btnStyle = {
@@ -26,14 +17,6 @@ const FactorFooter = () => {
       <h3>
         Your Total : $<span className="cart-total">{totalPrice}</span>
       </h3>
-      <button
-        className="clear-cart banner-btn"
-        disabled={!factorProducts.length}
-        style={btnStyle}
-        onClick={openDialog}
-      >
-        Buy Carts...!
-      </button>
       <button
         className="clear-cart banner-btn"
         disabled={!factorProducts.length}

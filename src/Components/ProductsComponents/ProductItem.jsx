@@ -1,37 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const ProductItem = ({
   text,
   price,
   image,
   alt,
-  to,
+  inCart,
   content,
   productStyle,
-  handleAddProduct,
-  handlePath,
+  handleIncProduct,
 }) => {
   return (
     <article className="product">
       <div className="img-container" style={productStyle && productStyle.div}>
-        <Link to={to}>
-          <img
-            style={productStyle && productStyle.img}
-            className="product-img"
-            src={image}
-            alt={alt}
-            onClick={handlePath}
-          />
-        </Link>
+        <img
+          style={productStyle && productStyle.img}
+          className="product-img"
+          src={image}
+          alt={alt}
+        />
         <button
           style={productStyle && productStyle.button}
-          onClick={handleAddProduct}
+          onClick={handleIncProduct}
           className="bag-btn"
         >
           {price}
           <i className="fas fa-shopping-cart">Add to cart</i>
-          <i className="fas fa-shopping-cart"></i>
+          <i className="fas fa-shopping-cart">{inCart && inCart}</i>
         </button>
       </div>
       <h3 style={productStyle && productStyle.text}>{text}</h3>
