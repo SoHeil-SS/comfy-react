@@ -10,7 +10,7 @@ import Header from "./Components/Header";
 import ProductMapper from "./Components/ProductsComponents/ProductMapper.jsx";
 import FactorContent from "./Components/FactorComponents/FactorContent";
 import OurProducts from "./Components/OurProducts";
-import ProductDetails from "./Components/ProductsComponents/ProductDetails";
+// import ProductDetails from "./Components/ProductsComponents/ProductDetails";
 import { reducer } from "./StateManager/reducer";
 import { getInitialData } from "./Server/initialData";
 
