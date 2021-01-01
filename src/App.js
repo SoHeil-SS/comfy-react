@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useReducer } from "react";
 
-import { dataReceived } from "./StateManager/actions";
-
+import { handleGetData } from "./StateManager/actions";
+import { handleGetFactorProducts } from "./Events/mainEvents";
 import Contexts from "./contexts";
 
 import Loader from "./Components/Loader";
@@ -22,15 +22,14 @@ const App = () => {
 
   useEffect(() => {
     getInitialData().then(
-      (products) => setTimeout(() => dispatch(dataReceived(products))),
+      (products) => setTimeout(() => dispatch(handleGetData(products))),
       750
     );
   }, []);
 
-  const factorProducts = useMemo(
-    () => products.filter((product) => product.inCart > 0),
-    [products]
-  );
+  const factorProducts = useMemo(() => handleGetFactorProducts(products), [
+    products,
+  ]);
 
   if (!products.length) {
     return (

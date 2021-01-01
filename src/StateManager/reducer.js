@@ -1,21 +1,20 @@
-import { mainEvents } from "../EventHandlers/mainEvents";
+import { mainEvents } from "../Events/mainEvents";
 
 const {
-  handleDataReceived,
+  handleGetData,
   handleClearProducts,
   handleFactorVisibility,
   handleIncAndDecProduct,
-  handleRemoveProduct,
 } = mainEvents;
 
 export function reducer(state, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case "DATA_RECEIVED":
-      return handleDataReceived(state, payload);
+    case "GET_DATA":
+      return handleGetData(state, payload);
 
-    case "INC_AND_DEC_PRODUCT":
+    case "INC_OR_DEC_PRODUCT":
       return handleIncAndDecProduct(state, payload);
 
     case "CLEAR_ALL_PRODUCTS":
@@ -25,6 +24,6 @@ export function reducer(state, action) {
       return handleFactorVisibility(state);
 
     default:
-      break;
+      return state;
   }
 }

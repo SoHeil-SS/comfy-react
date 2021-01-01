@@ -1,4 +1,4 @@
-function handleDataReceived(state, products) {
+function handleGetData(state, products) {
   return {
     ...state,
     products,
@@ -38,6 +38,9 @@ function handleFinallyProducts(products, productIndex, product) {
   products.splice(productIndex, 1, product);
 }
 
+export const handleGetFactorProducts = (products) =>
+  products.filter((product) => product.inCart > 0);
+
 const stateHandler = ({ products, factorVisibility, totalPrice }, id) => ({
   product: { ...products.find((product) => product.id === id) },
   products: [...products],
@@ -46,7 +49,7 @@ const stateHandler = ({ products, factorVisibility, totalPrice }, id) => ({
 });
 
 export const mainEvents = {
-  handleDataReceived,
+  handleGetData,
   handleIncAndDecProduct,
   handleFactorVisibility,
   handleClearProducts,
