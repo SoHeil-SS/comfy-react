@@ -1,20 +1,22 @@
-import React from "react";
+import { Button } from "react-bootstrap";
+
 import Navbar from "./Navbar";
 
 function NavigationBar({ basketCount, handleFactorVisibility }) {
   return (
     <Navbar>
-      <span className="fa fa-bars"></span>
+      <Button variant="dark" disabled>
+        <span className="fa fa-bars"></span>
+      </Button>
       <img alt="store logo" src="./images/logo.svg"></img>
       <div className="cart-btn">
-        <button
-          className="nav-icon btn btn-secondary "
-          style={{ width: "60px", height: "43px" }}
+        <Button
+          className=" btn-dark btn-lg nav-icon "
           disabled={!basketCount}
           onClick={handleFactorVisibility}
         >
           <i className="fas fa-cart-plus"></i>
-        </button>
+        </Button>
         <div className="cart-items">{basketCount}</div>
       </div>
     </Navbar>

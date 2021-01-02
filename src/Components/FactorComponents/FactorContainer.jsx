@@ -2,32 +2,28 @@ import { useMemo } from "react";
 
 import { useDispatch } from "../../Hooks/useDispatch";
 
-import { incAndDecProduct } from "../../StateManagers/actions";
 import {
+  incAndDecProduct,
   handleFactorVisibility,
   handleClearCarts,
 } from "../../StateManagers/actions";
 
+import { handleFactorProducts, handleTotalPrice } from "../../Events/others";
+
 import FactorHeader from "./FactorHeader";
 import FactorMapper from "./FactorMapper";
 import FactorFooter from "./FactorFooter";
-import { handleGetFactorProducts } from "../../Events/others";
 
 const FactorContainer = ({ factorVisibility, products }) => {
   const dispatch = useDispatch();
 
-  const factorProducts = useMemo(() => handleGetFactorProducts(products), [
+  const factorProducts = useMemo(() => handleFactorProducts(products), [
     products,
   ]);
 
-  const totalPrice = useMemo(() => {
-    let total = 0;
-    factorProducts.forEach((product) => {
-      const { price, inCart } = product;
-      total += price * inCart;
-    });
-    return total;
-  }, [factorProducts]);
+  const totalPrice = useMemo(() => handleTotalPrice(factorProducts), [
+    factorProducts,
+  ]);
 
   return (
     <div className={factorVisibility ? " cart-overlay transparentBcg" : ""}>

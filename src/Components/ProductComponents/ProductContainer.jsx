@@ -1,6 +1,8 @@
-import ProductMapper from "./ProductMapper";
 import { useDispatch } from "../../Hooks/useDispatch";
+
 import { incAndDecProduct } from "../../StateManagers/actions";
+
+import ProductMapper from "./ProductMapper";
 
 const ProductContainer = ({ products }) => {
   const dispatch = useDispatch();

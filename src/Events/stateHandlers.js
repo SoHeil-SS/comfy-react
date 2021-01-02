@@ -1,11 +1,9 @@
 import { handleFinallyProducts, handleStateCopier } from "./others";
 
-export const handleGetData = (state, products) => {
-  return {
-    ...state,
-    products,
-  };
-};
+export const handleGetData = (state, products) => ({
+  ...state,
+  products,
+});
 
 export const handleIncAndDecProduct = (state, { id, op }) => {
   let { products, product, productIndex } = handleStateCopier(state, id);
@@ -21,16 +19,12 @@ export const handleIncAndDecProduct = (state, { id, op }) => {
   return { ...state, products };
 };
 
-export const handleFactorVisibility = (state) => {
-  return {
-    ...state,
-    factorVisibility: !state.factorVisibility,
-  };
-};
+export const handleFactorVisibility = (state) => ({
+  ...state,
+  factorVisibility: !state.factorVisibility,
+});
 
-export const handleClearCarts = (state) => {
-  return {
-    ...state,
-    factorVisibility: !state.factorVisibility,
-  };
-};
+export const handleClearCarts = (state) => ({
+  ...state,
+  factorVisibility: !state.factorVisibility,
+});

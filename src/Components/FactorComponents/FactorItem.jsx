@@ -1,3 +1,5 @@
+import { Button } from "react-bootstrap";
+
 const FactorItem = ({
   title,
   total,
@@ -12,9 +14,9 @@ const FactorItem = ({
       <div>
         <h4>{title} </h4>
         <h5>{total}</h5>
-        <span className="remove-item" onClick={handleRemoveProduct}>
+        <Button variant="outline-danger" onClick={handleRemoveProduct}>
           Remove
-        </span>
+        </Button>
       </div>
       <div>
         <i

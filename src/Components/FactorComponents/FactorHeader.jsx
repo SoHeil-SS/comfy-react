@@ -1,8 +1,12 @@
+import { Button } from "react-bootstrap";
+
 const FactorHeader = ({ handleFactorVisibility }) => {
   return (
     <>
       <span className="close-cart">
-        <i className="far fa-window-close" onClick={handleFactorVisibility}></i>
+        <Button variant="danger" onClick={handleFactorVisibility}>
+          X
+        </Button>
       </span>
       <h2>Your Carts</h2>
     </>

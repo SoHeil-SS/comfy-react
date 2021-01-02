@@ -1,4 +1,3 @@
-import React from "react";
 import { ScrollTo } from "react-scroll-to";
 
 import { handleScrollTo } from "../../Events/others";
