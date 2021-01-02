@@ -1,12 +1,6 @@
-import React, { useContext } from "react";
-
 import ProductItem from "./ProductItem";
-import { incAndDecProduct } from "../../StateManager/actions";
-import Contexts from "../../contexts";
 
-const ProductMapper = ({ products }) => {
-  const { dispatch } = useContext(Contexts);
-
+const ProductMapper = ({ products, handleIncProduct }) => {
   const Products = products.map((product) => {
     const { id, title, price, image, inCart } = product;
     return (
@@ -17,7 +11,7 @@ const ProductMapper = ({ products }) => {
         image={image}
         alt={title}
         inCart={inCart}
-        handleIncProduct={() => dispatch(incAndDecProduct({ id, op: +1 }))}
+        handleIncProduct={() => handleIncProduct(id)}
       />
     );
   });

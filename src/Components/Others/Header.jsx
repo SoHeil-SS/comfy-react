@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollTo } from "react-scroll-to";
 
-import { handleScrollTo } from "../Events/mainEvents";
+import { handleScrollTo } from "../../Events/others";
 
 const Header = () => {
   return (

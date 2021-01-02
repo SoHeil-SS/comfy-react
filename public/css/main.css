@@ -44,12 +44,16 @@ body {
 }
 
 .nav-icon {
-  font-size: 27px;
+  font-size: 22px;
 }
 
 .cart-btn {
   position: relative;
   cursor: pointer;
+}
+
+.fa-bars {
+  font-size: large;
 }
 
 .cart-items {

@@ -1,18 +1,23 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
-import { handleGetData } from "./StateManager/actions";
-import { handleGetFactorProducts } from "./Events/mainEvents";
-import Contexts from "./contexts";
+import { reducer } from "./StateManagers/reducer";
+import { handleFactorVisibility, handleGetData } from "./StateManagers/actions";
 
-import Loader from "./Components/Loader";
-import Navbar from "./Components/Navbar";
-import Header from "./Components/Header";
-import ProductMapper from "./Components/ProductsComponents/ProductMapper.jsx";
-import FactorContent from "./Components/FactorComponents/FactorContent";
-import OurProducts from "./Components/OurProducts";
-// import ProductDetails from "./Components/ProductsComponents/ProductDetails";
-import { reducer } from "./StateManager/reducer";
 import { getInitialData } from "./Server/initialData";
+
+import { handleBasketCount } from "./Events/others";
+
+import ProductContainer from "./Components/ProductComponents/ProductContainer";
+import FactorContainer from "./Components/FactorComponents/FactorContainer";
+// import ProductDetails from "./Components/ProductsComponents/ProductDetails";
+
+import NavigationBar from "./Components/Others/NavigationBar";
+import Header from "./Components/Others/Header";
+import Loader from "./Components/Others/Loader";
+import Portal from "./Components/Others/Portal";
+
+import { DispatchContext } from "./Contexts/DispatchContext";
+import { loader } from "./Constants/loader";
 
 const App = () => {
   const [{ products, factorVisibility }, dispatch] = useReducer(reducer, {
@@ -23,42 +28,30 @@ const App = () => {
   useEffect(() => {
     getInitialData().then(
       (products) => setTimeout(() => dispatch(handleGetData(products))),
-      750
+      1750
     );
   }, []);
 
-  const factorProducts = useMemo(() => handleGetFactorProducts(products), [
-    products,
-  ]);
-
   if (!products.length) {
-    return (
-      <Loader
-        style={{
-          marginLeft: "42%",
-          marginTop: "20%",
-          width: "250px",
-          height: "250px",
-        }}
-      />
-    );
+    return <Loader style={loader.styles.application} />;
   }
 
   return (
-    <Contexts.Provider
-      value={{
-        dispatch,
-        products,
-        factorProducts,
-        factorVisibility,
-      }}
-    >
+    <DispatchContext.Provider value={dispatch}>
       {/* <ProductDetails product={product} /> */}
-      <Navbar />
+      <NavigationBar
+        basketCount={handleBasketCount(products)}
+        handleFactorVisibility={() => dispatch(handleFactorVisibility())}
+      />
       <Header />
-      <OurProducts products={products} />
-      <FactorContent />
-    </Contexts.Provider>
+      <ProductContainer products={products} />
+      <Portal>
+        <FactorContainer
+          factorVisibility={factorVisibility}
+          products={products}
+        />
+      </Portal>
+    </DispatchContext.Provider>
   );
 };
 export default App;

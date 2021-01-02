@@ -1,11 +1,9 @@
-import { mainEvents } from "../Events/mainEvents";
-
-const {
+import {
   handleGetData,
-  handleClearProducts,
-  handleFactorVisibility,
   handleIncAndDecProduct,
-} = mainEvents;
+  handleClearCarts,
+  handleFactorVisibility,
+} from "../Events/stateHandlers";
 
 export function reducer(state, action) {
   const { type, payload } = action;
@@ -18,7 +16,7 @@ export function reducer(state, action) {
       return handleIncAndDecProduct(state, payload);
 
     case "CLEAR_ALL_PRODUCTS":
-      return handleClearProducts(state, payload);
+      return handleClearCarts(state, payload);
 
     case "FACTOR_VISIBILITY":
       return handleFactorVisibility(state);

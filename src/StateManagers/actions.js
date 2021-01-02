@@ -7,4 +7,4 @@ export const incAndDecProduct = (payload) =>
 
 export const handleFactorVisibility = () => actionCreator("FACTOR_VISIBILITY");
 
-export const handleClearProducts = () => actionCreator("CLEAR_ALL_PRODUCTS");
+export const handleClearCarts = () => actionCreator("CLEAR_ALL_PRODUCTS");
