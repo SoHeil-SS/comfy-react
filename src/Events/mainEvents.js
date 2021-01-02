@@ -48,6 +48,11 @@ const stateHandler = ({ products, factorVisibility, totalPrice }, id) => ({
   totalPrice,
 });
 
+export const handleScrollTo = (scroll) =>
+  setTimeout(() => {
+    scroll({ y: 899 });
+  }, 300);
+
 export const mainEvents = {
   handleGetData,
   handleIncAndDecProduct,

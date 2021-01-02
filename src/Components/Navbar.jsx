@@ -16,25 +16,23 @@ const Navbar = () => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
-      <nav className="navbar" style={{ position: "fixed" }}>
-        <div className="navbar-center ">
-          <span className="nav-icon"></span>
-          <img alt="store logo" src="./images/logo.svg"></img>
-          <div className="cart-btn">
-            <button
-              className="nav-icon btn btn-primary   btn-sm"
-              style={{ width: "60px", height: "35px" }}
-              disabled={!basket()}
-              onClick={() => dispatch(handleFactorVisibility())}
-            >
-              <i className="fas fa-cart-plus"></i>
-            </button>
-            <div className="cart-items">{basket()}</div>
-          </div>
+    <nav className="navbar" style={{ position: "fixed" }}>
+      <div className="navbar-center ">
+        <span className="nav-icon"></span>
+        <img alt="store logo" src="./images/logo.svg"></img>
+        <div className="cart-btn">
+          <button
+            className="nav-icon btn btn-primary   btn-sm"
+            style={{ width: "60px", height: "35px" }}
+            disabled={!basket()}
+            onClick={() => dispatch(handleFactorVisibility())}
+          >
+            <i className="fas fa-cart-plus"></i>
+          </button>
+          <div className="cart-items">{basket()}</div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 

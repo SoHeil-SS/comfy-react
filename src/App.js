@@ -54,11 +54,9 @@ const App = () => {
       }}
     >
       {/* <ProductDetails product={product} /> */}
-      <FactorContent />
       <Navbar />
       <Header />
-      <OurProducts />
-      <ProductMapper products={products} />
+      <OurProducts products={products} />
       <FactorContent />
     </Contexts.Provider>
   );

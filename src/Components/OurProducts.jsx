@@ -1,14 +1,14 @@
 import React from "react";
+import ProductMapper from "./ProductsComponents/ProductMapper";
 
-const OurProducts = () => {
+const OurProducts = ({ products }) => {
   return (
-    <div>
-      <section className="products">
-        <div className="section-title">
-          <h2> Our Products</h2>
-        </div>
-      </section>
-    </div>
+    <section className="products">
+      <div className="section-title">
+        <h2> Our Products</h2>
+      </div>
+      <ProductMapper products={products} />
+    </section>
   );
 };
 

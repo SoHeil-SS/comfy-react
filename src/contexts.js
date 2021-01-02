@@ -1,8 +1,8 @@
 import { createContext } from "react";
-const Contexts = createContext({
+const contexts = createContext({
   dispatch: () => {},
   products: [],
   factorProducts: [],
   factorVisibility: "",
 });
-export default Contexts;
+export default contexts;

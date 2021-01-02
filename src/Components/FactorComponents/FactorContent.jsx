@@ -24,16 +24,18 @@ const FactorContent = () => {
   }, [factorProducts]);
 
   return (
-    <div className={factorVisibility ? "cart showCart" : "cart"}>
-      <FactorHeader
-        handleFactorVisibility={() => dispatch(handleFactorVisibility())}
-      />
-      <FactorMapper />
-      <FactorFooter
-        factorProducts={factorProducts}
-        handleClear={() => dispatch(handleClearProducts())}
-        totalPrice={totalPrice}
-      />
+    <div className={factorVisibility && " cart-overlay transparentBcg"}>
+      <div className={factorVisibility ? "cart showCart" : "cart"}>
+        <FactorHeader
+          handleFactorVisibility={() => dispatch(handleFactorVisibility())}
+        />
+        <FactorMapper />
+        <FactorFooter
+          factorProducts={factorProducts}
+          handleClear={() => dispatch(handleClearProducts())}
+          totalPrice={totalPrice}
+        />
+      </div>
     </div>
   );
 };
