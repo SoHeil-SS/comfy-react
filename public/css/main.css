@@ -102,6 +102,23 @@ body {
   cursor: pointer;
 }
 
+.clear-btn-disabled {
+  padding: 18px 54px;
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 18px;
+  background: rgb(165, 164, 164);
+  color: var(--mainBlack);
+  border: 1px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  cursor: not-allowed;
+}
+
+.clear-btn-disabled:hover {
+  background: rgb(187, 187, 187);
+  color: rgb(0, 0, 0);
+}
+
 .banner-btn:hover {
   background: transparent;
   color: var(--primaryColor);

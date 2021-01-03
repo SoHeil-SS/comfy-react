@@ -45,6 +45,10 @@ const FactorContainer = ({ factorVisibility, factorCarts }) => {
         <FactorFooter
           handleClearCarts={() => dispatch(handleClearCarts())}
           totalPrice={totalPrice}
+          clearDisabled={!totalPrice}
+          clearClassName={
+            totalPrice ? "clear-cart banner-btn" : "clear-btn-disabled"
+          }
         />
       </div>
     </div>
