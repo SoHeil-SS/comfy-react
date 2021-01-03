@@ -1,7 +1,11 @@
 import { useEffect, useReducer } from "react";
 
 import { reducer } from "./StateManagers/reducer";
-import { handleFactorVisibility, handleGetData } from "./StateManagers/actions";
+import {
+  handleFactorVisibility,
+  handleGetData,
+  handlePageIndex,
+} from "./StateManagers/actions";
 
 import { getInitialData } from "./Server/initialData";
 
@@ -18,19 +22,24 @@ import Portal from "./Components/Others/Portal";
 
 import { DispatchContext } from "./Contexts/DispatchContext";
 import { loader } from "./Constants/loader";
+import PageIndexer from "./Components/Others/PageIndexer";
 
 const App = () => {
-  const [{ products, factorVisibility }, dispatch] = useReducer(reducer, {
-    products: [],
-    factorVisibility: false,
-  });
+  const [{ factorVisibility, products, pageIndex }, dispatch] = useReducer(
+    reducer,
+    {
+      factorVisibility: false,
+      products: [],
+      pageIndex: 0,
+    }
+  );
 
   useEffect(() => {
     getInitialData().then(
       (products) => setTimeout(() => dispatch(handleGetData(products))),
       1750
     );
-  }, []);
+  }, [pageIndex]);
 
   if (!products.length) {
     return <Loader style={loader.styles.application} />;
@@ -38,13 +47,17 @@ const App = () => {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      {/* <ProductDetails product={product} /> */}
       <NavigationBar
         basketCount={handleBasketCount(products)}
         handleFactorVisibility={() => dispatch(handleFactorVisibility())}
       />
       <Header />
       <ProductContainer products={products} />
+      <PageIndexer
+        nextDisabled={pageIndex > Math.floor(products.length / 3)}
+        prevDisabled={pageIndex <= 0}
+        handlePageIndex={(op) => dispatch(handlePageIndex(op))}
+      />
       <Portal>
         <FactorContainer
           factorVisibility={factorVisibility}

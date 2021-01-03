@@ -7,4 +7,6 @@ export const incAndDecProduct = (payload) =>
 
 export const handleFactorVisibility = () => actionCreator("FACTOR_VISIBILITY");
 
+export const handlePageIndex = (op) => actionCreator("CHANGE_PAGE_INDEX", op);
+
 export const handleClearCarts = () => actionCreator("CLEAR_ALL_PRODUCTS");

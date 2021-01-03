@@ -3,6 +3,7 @@ import {
   handleIncAndDecProduct,
   handleClearCarts,
   handleFactorVisibility,
+  handlePageIndex,
 } from "../Events/stateHandlers";
 
 export function reducer(state, action) {
@@ -20,6 +21,9 @@ export function reducer(state, action) {
 
     case "FACTOR_VISIBILITY":
       return handleFactorVisibility(state);
+
+    case "CHANGE_PAGE_INDEX":
+      return handlePageIndex(state, payload);
 
     default:
       return state;

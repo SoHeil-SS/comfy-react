@@ -189,6 +189,10 @@ body {
   text-align: center;
 }
 
+.product {
+  max-width: 300px;
+}
+
 /* ---------------End of Products ---------------- */
 /* --------------- Cart ---------------- */
 .cart-overlay {
@@ -298,8 +302,18 @@ body {
   margin-bottom: 18px;
 }
 /* --------------- End of Cart ---------------- */
-/* Styles for the content section */
 
+/* Other styles ...  */
 html {
   scroll-behavior: smooth;
+}
+
+.page-indexer {
+  text-align: center;
+  padding: 40px;
+}
+
+.page-indexer button {
+  font-size: large;
+  margin-left: 20px;
 }
