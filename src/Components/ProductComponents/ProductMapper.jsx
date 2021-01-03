@@ -2,7 +2,7 @@ import ProductItem from "./ProductItem";
 
 const ProductMapper = ({ products, handleIncProduct }) => {
   const Products = products.map((product) => {
-    const { id, title, price, image, inCart } = product;
+    const { id, title, price, image } = product;
     return (
       <ProductItem
         key={id}
