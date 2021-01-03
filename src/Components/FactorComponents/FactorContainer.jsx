@@ -21,8 +21,6 @@ const FactorContainer = ({ factorVisibility, factorCarts }) => {
     factorCarts,
   ]);
 
-  console.log(filteredFactorProducts);
-
   const totalPrice = useMemo(() => handleTotalPrice(factorCarts), [
     factorCarts,
   ]);
