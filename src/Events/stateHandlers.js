@@ -1,4 +1,4 @@
-import { handleFinallyProducts, handleStateCopier } from "./others";
+import { handleFinallyCarts, handleStateCopier } from "./others";
 
 export const handleGetData = (state, products) => {
   const { pageIndex } = state;
@@ -9,17 +9,17 @@ export const handleGetData = (state, products) => {
 };
 
 export const handleIncAndDecProduct = (state, { id, op }) => {
-  let { products, product, productIndex } = handleStateCopier(state, id);
+  let { factorCarts, cart, product, cartIndex } = handleStateCopier(state, id);
 
-  if (!product.inCart) {
+  if (!cart) {
     product.inCart = 1;
+    factorCarts.push(product);
   } else {
-    product.inCart = product.inCart + op;
+    cart.inCart = cart.inCart + op;
+    handleFinallyCarts(factorCarts, cartIndex, cart);
   }
 
-  handleFinallyProducts(products, productIndex, product);
-
-  return { ...state, products };
+  return { ...state, factorCarts };
 };
 
 export const handleFactorVisibility = (state) => ({
@@ -30,6 +30,7 @@ export const handleFactorVisibility = (state) => ({
 export const handleClearCarts = (state) => ({
   ...state,
   factorVisibility: !state.factorVisibility,
+  factorCarts: [],
 });
 
 export const handleSliceProducts = (products, index) =>

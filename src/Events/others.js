@@ -1,35 +1,39 @@
-export const handleFactorProducts = (products) =>
-  products.filter((product) => product.inCart > 0);
+export const handleFactorCarts = (factorCarts) =>
+  factorCarts.filter((product) => product.inCart > 0);
 
-export const handleTotalPrice = (factorProducts) => {
+export const handleTotalPrice = (factorCarts) => {
   let total = 0;
-  factorProducts.forEach((product) => {
-    const { price, inCart } = product;
+  factorCarts.forEach((cart) => {
+    const { price, inCart } = cart;
     total += price * inCart;
   });
   return total;
 };
 
-export const handleFinallyProducts = (products, productIndex, product) => {
-  products.splice(productIndex, 1, product);
+export const handleFinallyCarts = (factorCarts, cartIndex, cart) => {
+  factorCarts.splice(cartIndex, 1, cart);
 };
 
 export const handleScrollTo = (scroll) =>
   setTimeout(() => scroll({ y: 899 }), 300);
 
-export const handleBasketCount = (products) => {
+export const handleBasketCount = (factorCarts) => {
   let basket = null;
-  handleFactorProducts(products).forEach((p) => {
+  handleFactorCarts(factorCarts).forEach((p) => {
     basket += p.inCart;
   });
   return basket;
 };
 
-export const handleStateCopier = ({ products, factorVisibility }, id) => ({
+export const handleStateCopier = (
+  { products, factorCarts, factorVisibility },
+  id
+) => ({
   //States
   factorVisibility,
   //Variables
-  products: [...products],
-  product: { ...products.find((product) => product.id === id) },
-  productIndex: products.findIndex((product) => product.id === id),
+  factorCarts: [...factorCarts],
+  cart: factorCarts.find((cart) => cart.id === id),
+  product: { ...products.find((cart) => cart.id === id) },
+  cartIndex: factorCarts.findIndex((cart) => cart.id === id),
 });

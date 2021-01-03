@@ -25,14 +25,15 @@ import { loader } from "./Constants/loader";
 import PageIndexer from "./Components/Others/PageIndexer";
 
 const App = () => {
-  const [{ factorVisibility, products, pageIndex }, dispatch] = useReducer(
-    reducer,
-    {
-      factorVisibility: false,
-      products: [],
-      pageIndex: 0,
-    }
-  );
+  const [
+    { factorVisibility, products, factorCarts, pageIndex },
+    dispatch,
+  ] = useReducer(reducer, {
+    factorVisibility: false,
+    products: [],
+    factorCarts: [],
+    pageIndex: 0,
+  });
 
   useEffect(() => {
     getInitialData().then(
@@ -48,7 +49,7 @@ const App = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <NavigationBar
-        basketCount={handleBasketCount(products)}
+        basketCount={handleBasketCount(factorCarts)}
         handleFactorVisibility={() => dispatch(handleFactorVisibility())}
       />
       <Header />
@@ -61,7 +62,7 @@ const App = () => {
       <Portal>
         <FactorContainer
           factorVisibility={factorVisibility}
-          products={products}
+          factorCarts={factorCarts}
         />
       </Portal>
     </DispatchContext.Provider>

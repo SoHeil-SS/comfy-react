@@ -8,21 +8,23 @@ import {
   handleClearCarts,
 } from "../../StateManagers/actions";
 
-import { handleFactorProducts, handleTotalPrice } from "../../Events/others";
+import { handleFactorCarts, handleTotalPrice } from "../../Events/others";
 
 import FactorHeader from "./FactorHeader";
 import FactorMapper from "./FactorMapper";
 import FactorFooter from "./FactorFooter";
 
-const FactorContainer = ({ factorVisibility, products }) => {
+const FactorContainer = ({ factorVisibility, factorCarts }) => {
   const dispatch = useDispatch();
 
-  const factorProducts = useMemo(() => handleFactorProducts(products), [
-    products,
+  const filteredFactorProducts = useMemo(() => handleFactorCarts(factorCarts), [
+    factorCarts,
   ]);
 
-  const totalPrice = useMemo(() => handleTotalPrice(factorProducts), [
-    factorProducts,
+  console.log(filteredFactorProducts);
+
+  const totalPrice = useMemo(() => handleTotalPrice(factorCarts), [
+    factorCarts,
   ]);
 
   return (
@@ -33,7 +35,7 @@ const FactorContainer = ({ factorVisibility, products }) => {
         />
 
         <FactorMapper
-          factorProducts={factorProducts}
+          filteredFactorProducts={filteredFactorProducts}
           handleIncDecProduct={(id, op) =>
             dispatch(incAndDecProduct({ id, op }))
           }

@@ -1,12 +1,12 @@
 import FactorItem from "./FactorItem";
 
 const FactorMapper = ({
-  factorProducts,
+  filteredFactorProducts,
   handleIncDecProduct,
   handleRemoveProduct,
 }) => {
-  const Carts = factorProducts.map((product) => {
-    const { id, title, image, inCart, price } = product;
+  const Carts = filteredFactorProducts.map((cart) => {
+    const { id, title, image, inCart, price } = cart;
     return (
       <FactorItem
         key={id}

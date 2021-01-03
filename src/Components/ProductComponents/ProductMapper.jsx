@@ -10,7 +10,6 @@ const ProductMapper = ({ products, handleIncProduct }) => {
         price={price}
         image={image}
         alt={title}
-        inCart={inCart}
         handleIncProduct={() => handleIncProduct(id)}
       />
     );
