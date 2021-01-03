@@ -32,11 +32,11 @@ const App = () => {
     factorVisibility: false,
     products: [],
     factorCarts: [],
-    pageIndex: 0,
+    pageIndex: 1,
   });
 
   useEffect(() => {
-    getInitialData().then(
+    getInitialData(pageIndex).then(
       (products) => setTimeout(() => dispatch(handleGetData(products))),
       1750
     );
@@ -55,8 +55,8 @@ const App = () => {
       <Header />
       <ProductContainer products={products} />
       <PageIndexer
-        nextDisabled={pageIndex > Math.floor(products.length / 3)}
-        prevDisabled={pageIndex <= 0}
+        nextDisabled={pageIndex > 2}
+        prevDisabled={pageIndex <= 1}
         handlePageIndex={(op) => dispatch(handlePageIndex(op))}
       />
       <Portal>

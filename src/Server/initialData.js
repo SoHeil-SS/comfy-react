@@ -1,8 +1,8 @@
-export const getInitialData = () =>
-  fetch("https://run.mocky.io/v3/72e6966f-b14c-47e6-a963-cac8e122d89b")
+export const getInitialData = (pageIndex) =>
+  fetch(`http://localhost:4000/items?_page=${pageIndex}&_limit=3`)
     .then((response) => response.json())
     .then((response) =>
-      response.items.map((item) => {
+      response.map((item) => {
         return {
           id: item.sys.id,
           title: item.fields.title,

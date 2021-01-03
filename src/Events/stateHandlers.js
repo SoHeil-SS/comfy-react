@@ -1,12 +1,9 @@
 import { handleFinallyCarts, handleStateCopier } from "./others";
 
-export const handleGetData = (state, products) => {
-  const { pageIndex } = state;
-  return {
-    ...state,
-    products: handleSliceProducts(products, pageIndex),
-  };
-};
+export const handleGetData = (state, products) => ({
+  ...state,
+  products,
+});
 
 export const handleIncAndDecProduct = (state, { id, op }) => {
   let { factorCarts, cart, product, cartIndex } = handleStateCopier(state, id);
