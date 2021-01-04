@@ -1,15 +1,17 @@
 import ProductItem from "./ProductItem";
 
-const ProductMapper = ({ products, handleIncProduct }) => {
+const ProductMapper = ({ products, handleProductDetail, handleIncProduct }) => {
   const Products = products.map((product) => {
-    const { id, title, price, image } = product;
+    const { id, title, image } = product;
     return (
       <ProductItem
         key={id}
-        text={title}
-        price={price}
+        title={title}
         image={image}
         alt={title}
+        articleClassName="product"
+        detailBtnClassName="fas fa-info-circle"
+        handleProductDetail={() => handleProductDetail(id)}
         handleIncProduct={() => handleIncProduct(id)}
       />
     );

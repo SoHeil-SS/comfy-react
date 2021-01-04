@@ -26,23 +26,31 @@ import PageIndexer from "./Components/Others/PageIndexer";
 
 const App = () => {
   const [
-    { factorVisibility, products, factorCarts, pageIndex },
+    {
+      factorVisibility,
+      loading,
+      products,
+      factorCarts,
+      pageIndex,
+      productDetailId,
+    },
     dispatch,
   ] = useReducer(reducer, {
     factorVisibility: false,
+    loading: true,
     products: [],
     factorCarts: [],
     pageIndex: 1,
+    productDetailId: null,
   });
 
   useEffect(() => {
-    getInitialData(pageIndex).then(
-      (products) => setTimeout(() => dispatch(handleGetData(products))),
-      1750
+    getInitialData(pageIndex).then((products) =>
+      dispatch(handleGetData(products))
     );
   }, [pageIndex]);
 
-  if (!products.length) {
+  if (loading) {
     return <Loader style={loader.styles.application} />;
   }
 
@@ -52,13 +60,19 @@ const App = () => {
         basketCount={handleBasketCount(factorCarts)}
         handleFactorVisibility={() => dispatch(handleFactorVisibility())}
       />
+
       <Header />
-      <ProductContainer products={products} />
-      <PageIndexer
-        nextDisabled={pageIndex > 2}
-        prevDisabled={pageIndex <= 1}
-        handlePageIndex={(op) => dispatch(handlePageIndex(op))}
-      />
+
+      <ProductContainer products={products} productDetailId={productDetailId} />
+
+      {!productDetailId && (
+        <PageIndexer
+          nextDisabled={pageIndex > 2}
+          prevDisabled={pageIndex <= 1}
+          handlePageIndex={(op) => dispatch(handlePageIndex(op))}
+        />
+      )}
+
       <Portal>
         <FactorContainer
           factorVisibility={factorVisibility}

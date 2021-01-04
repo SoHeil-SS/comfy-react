@@ -1,36 +1,40 @@
 import { Button } from "react-bootstrap";
 
 const ProductItem = ({
-  text,
-  price,
+  title,
+  details,
   image,
   alt,
+  articleClassName,
+  detailBtnClassName,
+  detailsContentClassName,
   handleIncProduct,
   handleProductDetail,
 }) => {
   return (
-    <article className="product">
+    <article className={articleClassName}>
       <div className="img-container">
         <img className="product-img" src={image} alt={alt} />
         <div>
           <Button
             variant="secondary"
-            className="detail-btn"
+            className="bag-btn detail-btn"
             onClick={handleProductDetail}
           >
-            <i className="fas fa-info-circle"></i>
+            <i className={detailBtnClassName}></i>
           </Button>
 
           <Button
             variant="primary"
-            className=" add-btn "
+            className="bag-btn add-btn "
             onClick={handleIncProduct}
           >
             <i className="fas fa-shopping-basket"></i>
           </Button>
         </div>
       </div>
-      <h3>{text}</h3>
+      <p className={detailsContentClassName}>{details}</p>
+      <h3>{title}</h3>
     </article>
   );
 };
