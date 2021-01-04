@@ -153,31 +153,33 @@ body {
   overflow: hidden;
 }
 
-.bag-btn {
+.add-btn {
   position: absolute;
   top: 70%;
-  right: 0;
-  background: var(--primaryColor);
-  border: none;
-  text-transform: uppercase;
+  right: 36%;
   padding: 9px 15px;
-  letter-spacing: var(--mainSpacing);
-  font-weight: bold;
-  transition: var(--mainTransition);
-  transform: translateX(101%);
   cursor: pointer;
+  visibility: hidden;
 }
-
-.bag-btn:hover {
-  color: var(--mainWhite);
+.detail-btn {
+  position: absolute;
+  top: 70%;
+  right: 52%;
+  padding: 9px 15px;
+  visibility: hidden;
+  cursor: pointer;
 }
 
 .fa-shopping-cart {
   margin-right: 9px;
 }
 
-.img-container:hover .bag-btn {
-  transform: translateX(0);
+.img-container:hover .add-btn {
+  visibility: visible;
+  transform: translateY(100%);
+}
+.img-container:hover .detail-btn {
+  visibility: visible;
 }
 
 .product-img {

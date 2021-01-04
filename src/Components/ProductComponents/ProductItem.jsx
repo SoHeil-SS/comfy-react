@@ -1,13 +1,34 @@
-const ProductItem = ({ text, price, image, alt, handleIncProduct }) => {
+import { Button } from "react-bootstrap";
+
+const ProductItem = ({
+  text,
+  price,
+  image,
+  alt,
+  handleIncProduct,
+  handleProductDetail,
+}) => {
   return (
     <article className="product">
       <div className="img-container">
         <img className="product-img" src={image} alt={alt} />
-        <button onClick={handleIncProduct} className="bag-btn">
-          {price}
-          <i className="fas fa-shopping-cart">Add to cart</i>
-          <i className="fas fa-shopping-cart"></i>
-        </button>
+        <div>
+          <Button
+            variant="secondary"
+            className="detail-btn"
+            onClick={handleProductDetail}
+          >
+            <i className="fas fa-info-circle"></i>
+          </Button>
+
+          <Button
+            variant="primary"
+            className=" add-btn "
+            onClick={handleIncProduct}
+          >
+            <i className="fas fa-shopping-basket"></i>
+          </Button>
+        </div>
       </div>
       <h3>{text}</h3>
     </article>
