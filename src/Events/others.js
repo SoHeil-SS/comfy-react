@@ -37,3 +37,6 @@ export const handleStateCopier = (
   product: { ...products.find((cart) => cart.id === id) },
   cartIndex: factorCarts.findIndex((cart) => cart.id === id),
 });
+
+export const handleFindProduct = (products, productDetailId) =>
+  products.find((product) => product.id === productDetailId);

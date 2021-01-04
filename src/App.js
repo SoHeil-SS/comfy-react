@@ -13,7 +13,6 @@ import { handleBasketCount } from "./Events/others";
 
 import ProductContainer from "./Components/ProductComponents/ProductContainer";
 import FactorContainer from "./Components/FactorComponents/FactorContainer";
-// import ProductDetails from "./Components/ProductsComponents/ProductDetails";
 
 import NavigationBar from "./Components/Others/NavigationBar";
 import Header from "./Components/Others/Header";

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+
 import { useDispatch } from "../../Hooks/useDispatch";
 
 import {
@@ -6,16 +7,18 @@ import {
   incAndDecProduct,
 } from "../../StateManagers/actions";
 
+import { handleFindProduct } from "../../Events/others";
+
 import ProductDetails from "./ProductDetails";
 import ProductMapper from "./ProductMapper";
 
 const ProductContainer = ({ products, productDetailId }) => {
   const dispatch = useDispatch();
 
-  const product = useMemo(
-    () => products.find((product) => product.id === productDetailId),
-    [products, productDetailId]
-  );
+  const product = useMemo(() => handleFindProduct(products, productDetailId), [
+    products,
+    productDetailId,
+  ]);
 
   return (
     <section className="products">
