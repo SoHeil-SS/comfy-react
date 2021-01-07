@@ -1,8 +1,9 @@
-const axios = require("axios").default;
+import axios from "axios";
+import { api } from "../Constants/api";
 
 export const getInitialData = (pageIndex) =>
   axios
-    .get(`http://localhost:4000/items?_page=${pageIndex}&_limit=3`)
+    .get(`${api.mainApi}/items?_page=${pageIndex}&_limit=3`)
     .then((res) =>
       res.data.map((item) => {
         return {
