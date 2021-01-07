@@ -14,4 +14,5 @@ export const getInitialData = (pageIndex) =>
           inCart: 0,
         };
       })
-    );
+    )
+    .catch((e) => console.log(e));

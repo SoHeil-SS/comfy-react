@@ -6,7 +6,7 @@ import {
   incAndDecProduct,
   handleFactorVisibility,
   handleClearCarts,
-} from "../../StateManagers/actions";
+} from "../../StateManagers/syncActions";
 
 import { handleFactorCarts, handleTotalPrice } from "../../Events/others";
 

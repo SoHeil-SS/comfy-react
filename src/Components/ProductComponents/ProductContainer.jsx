@@ -5,7 +5,7 @@ import { useDispatch } from "../../Hooks/useDispatch";
 import {
   handleProductDetail,
   incAndDecProduct,
-} from "../../StateManagers/actions";
+} from "../../StateManagers/syncActions";
 
 import { handleFindProduct } from "../../Events/others";
 

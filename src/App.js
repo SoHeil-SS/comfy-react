@@ -5,7 +5,7 @@ import {
   handleFactorVisibility,
   handleSetData,
   handlePageIndex,
-} from "./StateManagers/actions";
+} from "./StateManagers/syncActions";
 
 import { getInitialData } from "./Server/initialData";
 
@@ -47,7 +47,7 @@ const App = () => {
     getInitialData(pageIndex).then((products) =>
       dispatch(handleSetData(products))
     );
-  }, [pageIndex]);
+  }, [pageIndex, dispatch]);
 
   if (loading) {
     return <Loader style={loader.styles.application} />;
