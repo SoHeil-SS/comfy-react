@@ -1,5 +1,5 @@
 import {
-  handleGetData,
+  handleSetData,
   handleIncAndDecProduct,
   handleClearCarts,
   handleFactorVisibility,
@@ -12,7 +12,7 @@ export function reducer(state, action) {
 
   switch (type) {
     case "GET_DATA":
-      return handleGetData(state, payload);
+      return handleSetData(state, payload);
 
     case "INC_OR_DEC_PRODUCT":
       return handleIncAndDecProduct(state, payload);

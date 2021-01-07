@@ -1,8 +1,10 @@
+const axios = require("axios").default;
+
 export const getInitialData = (pageIndex) =>
-  fetch(`http://localhost:4000/items?_page=${pageIndex}&_limit=3`)
-    .then((response) => response.json())
-    .then((response) =>
-      response.map((item) => {
+  axios
+    .get(`http://localhost:4000/items?_page=${pageIndex}&_limit=3`)
+    .then((res) =>
+      res.data.map((item) => {
         return {
           id: item.sys.id,
           title: item.fields.title,

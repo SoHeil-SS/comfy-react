@@ -3,7 +3,7 @@ import { useEffect, useReducer } from "react";
 import { reducer } from "./StateManagers/reducer";
 import {
   handleFactorVisibility,
-  handleGetData,
+  handleSetData,
   handlePageIndex,
 } from "./StateManagers/actions";
 
@@ -45,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     getInitialData(pageIndex).then((products) =>
-      dispatch(handleGetData(products))
+      dispatch(handleSetData(products))
     );
   }, [pageIndex]);
 
