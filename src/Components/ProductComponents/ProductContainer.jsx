@@ -4,7 +4,7 @@ import { useDispatch } from "../../Hooks/useDispatch";
 
 import {
   handleProductDetail,
-  incAndDecProduct,
+  handleIncAndDecProduct,
 } from "../../StateManagers/syncActions";
 
 import { handleFindProduct } from "../../Events/others";
@@ -28,14 +28,18 @@ const ProductContainer = ({ products, productDetailId }) => {
       {product ? (
         <ProductDetails
           product={product}
-          handleIncProduct={(id) => dispatch(incAndDecProduct({ id, op: +1 }))}
+          handleIncProduct={(id) =>
+            dispatch(handleIncAndDecProduct({ id, op: +1 }))
+          }
           handleProductDetail={() => dispatch(handleProductDetail(null))}
         />
       ) : (
         <ProductMapper
           products={products}
           handleProductDetail={(id) => dispatch(handleProductDetail(id))}
-          handleIncProduct={(id) => dispatch(incAndDecProduct({ id, op: +1 }))}
+          handleIncProduct={(id) =>
+            dispatch(handleIncAndDecProduct({ id, op: +1 }))
+          }
         />
       )}
     </section>
