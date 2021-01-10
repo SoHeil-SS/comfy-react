@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useDispatch } from "../../Hooks/useDispatch";
 
 import {
-  incAndDecProduct,
+  handleIncAndDecProduct,
   handleFactorVisibility,
   handleClearCarts,
 } from "../../StateManagers/syncActions";
@@ -34,11 +34,11 @@ const FactorContainer = ({ factorVisibility, factorCarts }) => {
 
         <FactorMapper
           filteredFactorProducts={filteredFactorProducts}
-          handleIncDecProduct={(id, op) =>
-            dispatch(incAndDecProduct({ id, op }))
+          handleIncDecCart={(id, op) =>
+            dispatch(handleIncAndDecProduct({ id, op }))
           }
-          handleRemoveProduct={(id, inCart) =>
-            dispatch(incAndDecProduct({ id, op: -inCart }))
+          handleRemoveCart={(id, inCart) =>
+            dispatch(handleIncAndDecProduct({ id, op: -inCart }))
           }
         />
 
