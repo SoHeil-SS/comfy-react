@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add axios
+  /usr/bin/node /usr/share/yarn/bin/yarn.js
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -22,19 +22,21 @@ npm manifest:
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-      "@testing-library/jest-dom": "^5.11.4",
-      "@testing-library/react": "^11.1.0",
-      "@testing-library/user-event": "^12.1.10",
+      "@testing-library/jest-dom": "^5.11.8",
+      "@testing-library/react": "^11.2.3",
+      "@testing-library/user-event": "^12.6.0",
+      "axios": "^0.21.1",
       "bootstrap": "^4.5.3",
+      "lodash": "^4.17.20",
       "react": "^17.0.1",
-      "react-bootstrap": "^1.4.0",
+      "react-bootstrap": "^1.4.3",
       "react-dom": "^17.0.1",
       "react-hook-thunk-reducer": "^0.2.4",
-      "react-modal": "^3.11.2",
+      "react-modal": "^3.12.1",
       "react-router-dom": "^5.2.0",
-      "react-scripts": "4.0.0",
+      "react-scripts": "4.0.1",
       "react-scroll-to": "^3.0.0-beta.6",
-      "web-vitals": "^0.2.4"
+      "web-vitals": "^1.0.1"
     },
     "scripts": {
       "start": "concurrently \"react-scripts start\" \"npm run server\"",
@@ -2618,6 +2620,13 @@ Lockfile:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.1.1.tgz#70a7855888e287f7add66002211a423937063eaf"
     integrity sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
+  
+  axios@^0.21.1:
+    version "0.21.1"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+    integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+    dependencies:
+      follow-redirects "^1.10.0"
   
   axobject-query@^2.2.0:
     version "2.2.0"
@@ -5341,6 +5350,11 @@ Lockfile:
     version "1.13.0"
     resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
     integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
+  
+  follow-redirects@^1.10.0:
+    version "1.13.1"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+    integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
   
   for-in@^1.0.2:
     version "1.0.2"
