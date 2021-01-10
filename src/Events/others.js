@@ -1,5 +1,5 @@
-import { productItemClassNames } from "../Constants/classNames";
-import { fakeDetails } from "../Constants/others";
+import { classNames } from "../Constants/classNames";
+import { others } from "../Constants/others";
 
 export const handleFactorCarts = (factorCarts) =>
   factorCarts.filter((product) => product.inCart > 0);
@@ -45,11 +45,12 @@ export const handleFindProductAndDetails = (products, productDetailId) => {
   const product = {
     ...products.find((product) => product.id === productDetailId),
   };
+  const cls = classNames.productItemClassNames;
   const { article, btn, detailContent } = productDetailId
-    ? productItemClassNames.details
-    : productItemClassNames.main;
+    ? cls.details
+    : cls.main;
 
-  product.textContent = fakeDetails;
+  product.textContent = others.fakeDetails;
 
   return {
     condition: !!productDetailId,

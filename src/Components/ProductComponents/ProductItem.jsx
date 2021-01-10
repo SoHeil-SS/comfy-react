@@ -1,4 +1,7 @@
+import Loader from "../Others/Loader.jsx";
 import { Button } from "react-bootstrap";
+import { Img } from "react-image";
+import { styles } from "../../Constants/styles.js";
 
 const ProductItem = ({
   textContent,
@@ -13,7 +16,16 @@ const ProductItem = ({
   return (
     <article className={articleClassName}>
       <div className="img-container">
-        <img className="product-img" src={image} alt={alt} />
+        <Img
+          className="product-img"
+          src={image}
+          alt={alt}
+          loader={
+            <div className="text-center">
+              <Loader style={styles.loader.productItem} />
+            </div>
+          }
+        />
         <div>
           <Button
             variant="secondary"
