@@ -1,8 +1,8 @@
 import { Button } from "react-bootstrap";
 
-import Navbar from "./Navbar";
+import Navbar from "../NavbarComponents/Navbar";
 
-function NavigationBar({ basketCount, actionFactorVisibility }) {
+function NavbarContainer({ basketCount, actionFactorVisibility }) {
   return (
     <Navbar>
       <Button variant="dark" disabled>
@@ -23,4 +23,4 @@ function NavigationBar({ basketCount, actionFactorVisibility }) {
   );
 }
 
-export default NavigationBar;
+export default NavbarContainer;

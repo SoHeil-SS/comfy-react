@@ -9,7 +9,7 @@ import {
 
 import { handleFindProductAndDetails } from "../../Events/others";
 
-import ProductMapper from "./ProductMapper";
+import ProductMapper from "../ProductComponents/ProductMapper";
 
 const ProductContainer = ({ products, productDetailId }) => {
   const dispatch = useDispatch();

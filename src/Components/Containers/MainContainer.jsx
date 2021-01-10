@@ -7,18 +7,18 @@ import {
 
 import { handleBasketCount } from "../../Events/others";
 
-import ProductContainer from "../ProductComponents/ProductContainer";
-import FactorContainer from "../FactorComponents/FactorContainer";
+import ProductContainer from "../Containers/ProductContainer";
+import FactorContainer from "../Containers/FactorContainer";
 
 import Header from "../Others/Header";
 import PageIndexer from "../Others/PageIndexer";
 import Portal from "../Others/Portal";
 import Loader from "../Others/Loader";
-import NavigationBar from "../NavigationComponents/NavigationBar";
+import NavbarContainer from "../Containers/NavbarContainer";
 
 import { styles } from "../../Constants/styles";
 
-function Container({
+function MainContainer({
   productDetailId,
   factorVisibility,
   loading,
@@ -32,7 +32,7 @@ function Container({
 
   return (
     <>
-      <NavigationBar
+      <NavbarContainer
         basketCount={handleBasketCount(factorCarts)}
         actionFactorVisibility={() => dispatch(actionFactorVisibility())}
       />
@@ -55,4 +55,4 @@ function Container({
   );
 }
 
-export default Container;
+export default MainContainer;

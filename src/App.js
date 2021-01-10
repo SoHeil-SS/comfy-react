@@ -5,7 +5,7 @@ import { actionSetData } from "./StateManagers/syncActions";
 
 import { getInitialData } from "./Server/initialData";
 
-import Container from "./Components/Container/Container";
+import MainContainer from "./Components/Containers/MainContainer";
 
 import { DispatchContext } from "./Contexts/DispatchContext";
 
@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <Container
+      <MainContainer
         productDetailId={productDetailId}
         factorVisibility={factorVisibility}
         loading={loading}

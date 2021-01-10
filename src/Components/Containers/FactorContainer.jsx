@@ -10,9 +10,9 @@ import {
 
 import { handleFactorCarts, handleTotalPrice } from "../../Events/others";
 
-import FactorHeader from "./FactorHeader";
-import FactorMapper from "./FactorMapper";
-import FactorFooter from "./FactorFooter";
+import FactorHeader from "../FactorComponents/FactorHeader";
+import FactorMapper from "../FactorComponents/FactorMapper";
+import FactorFooter from "../FactorComponents/FactorFooter";
 
 const FactorContainer = ({ factorVisibility, factorCarts }) => {
   const dispatch = useDispatch();
