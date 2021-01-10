@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { useDispatch } from "../../Hooks/useDispatch";
 
 import {
-  handleProductDetail,
-  handleIncAndDecProduct,
+  actionProductDetail,
+  actionIncAndDecProduct,
 } from "../../StateManagers/syncActions";
 
 import { handleFindProduct } from "../../Events/others";
@@ -29,16 +29,16 @@ const ProductContainer = ({ products, productDetailId }) => {
         <ProductDetails
           product={product}
           handleIncProduct={(id) =>
-            dispatch(handleIncAndDecProduct({ id, op: +1 }))
+            dispatch(actionIncAndDecProduct({ id, op: +1 }))
           }
-          handleProductDetail={() => dispatch(handleProductDetail(null))}
+          handleProductDetail={() => dispatch(actionProductDetail(null))}
         />
       ) : (
         <ProductMapper
           products={products}
-          handleProductDetail={(id) => dispatch(handleProductDetail(id))}
+          handleProductDetail={(id) => dispatch(actionProductDetail(id))}
           handleIncProduct={(id) =>
-            dispatch(handleIncAndDecProduct({ id, op: +1 }))
+            dispatch(actionIncAndDecProduct({ id, op: +1 }))
           }
         />
       )}

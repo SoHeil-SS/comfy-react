@@ -3,9 +3,9 @@ import { useMemo } from "react";
 import { useDispatch } from "../../Hooks/useDispatch";
 
 import {
-  handleIncAndDecProduct,
-  handleFactorVisibility,
-  handleClearCarts,
+  actionIncAndDecProduct,
+  actionFactorVisibility,
+  actionClearCarts,
 } from "../../StateManagers/syncActions";
 
 import { handleFactorCarts, handleTotalPrice } from "../../Events/others";
@@ -29,21 +29,21 @@ const FactorContainer = ({ factorVisibility, factorCarts }) => {
     <div className={factorVisibility ? " cart-overlay transparentBcg" : ""}>
       <div className={factorVisibility ? "cart showCart" : "cart"}>
         <FactorHeader
-          handleFactorVisibility={() => dispatch(handleFactorVisibility())}
+          handleFactorVisibility={() => dispatch(actionFactorVisibility())}
         />
 
         <FactorMapper
           filteredFactorProducts={filteredFactorProducts}
           handleIncDecCart={(id, op) =>
-            dispatch(handleIncAndDecProduct({ id, op }))
+            dispatch(actionIncAndDecProduct({ id, op }))
           }
           handleRemoveCart={(id, inCart) =>
-            dispatch(handleIncAndDecProduct({ id, op: -inCart }))
+            dispatch(actionIncAndDecProduct({ id, op: -inCart }))
           }
         />
 
         <FactorFooter
-          handleClearCarts={() => dispatch(handleClearCarts())}
+          handleClearCarts={() => dispatch(actionClearCarts())}
           totalPrice={totalPrice}
           clearDisabled={!totalPrice}
           clearClassName={

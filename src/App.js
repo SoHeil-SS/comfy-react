@@ -2,9 +2,9 @@ import { useEffect, useReducer } from "react";
 
 import { reducer } from "./StateManagers/reducer";
 import {
-  handleFactorVisibility,
+  actionFactorVisibility,
+  actionPageIndex,
   handleSetData,
-  handlePageIndex,
 } from "./StateManagers/syncActions";
 
 import { getInitialData } from "./Server/initialData";
@@ -57,7 +57,7 @@ const App = () => {
     <DispatchContext.Provider value={dispatch}>
       <NavigationBar
         basketCount={handleBasketCount(factorCarts)}
-        handleFactorVisibility={() => dispatch(handleFactorVisibility())}
+        handleFactorVisibility={() => dispatch(actionFactorVisibility())}
       />
 
       <Header />
@@ -68,7 +68,7 @@ const App = () => {
         <PageIndexer
           nextDisabled={pageIndex > 2}
           prevDisabled={pageIndex <= 1}
-          handlePageIndex={(op) => dispatch(handlePageIndex(op))}
+          handlePageIndex={(op) => dispatch(actionPageIndex(op))}
         />
       )}
 

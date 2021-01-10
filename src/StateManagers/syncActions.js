@@ -2,13 +2,13 @@ import { actionCreator } from "./actionCreator";
 
 export const handleSetData = (payload) => actionCreator("GET_DATA", payload);
 
-export const handleIncAndDecProduct = (payload) =>
+export const actionIncAndDecProduct = (payload) =>
   actionCreator("INC_OR_DEC_PRODUCT", payload);
 
-export const handleFactorVisibility = () => actionCreator("FACTOR_VISIBILITY");
+export const actionFactorVisibility = () => actionCreator("FACTOR_VISIBILITY");
 
-export const handlePageIndex = (op) => actionCreator("CHANGE_PAGE_INDEX", op);
+export const actionPageIndex = (op) => actionCreator("CHANGE_PAGE_INDEX", op);
 
-export const handleClearCarts = () => actionCreator("CLEAR_ALL_PRODUCTS");
+export const actionClearCarts = () => actionCreator("CLEAR_ALL_PRODUCTS");
 
-export const handleProductDetail = (id) => actionCreator("GET_DETAILS", id);
+export const actionProductDetail = (id) => actionCreator("GET_DETAILS", id);

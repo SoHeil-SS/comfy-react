@@ -16,5 +16,7 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "000",
-  "cSpell.ignoreWords": []
+  "cSpell.ignoreWords": [],
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 20
 }
