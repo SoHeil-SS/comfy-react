@@ -7,7 +7,7 @@ export const productItemClassNames = {
     btn: "fas fa-info-circle",
   },
   details: {
-    details: "details-content",
+    detailContent: "details-content",
     article: "article-detail",
     btn: "fas fa-arrow-alt-circle-left",
   },

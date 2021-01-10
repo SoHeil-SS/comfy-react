@@ -1,9 +1,6 @@
 import ProductItem from "./ProductItem";
 
-import { fakeDetails } from "../../Constants/variables";
-
 const ProductMapper = ({
-  productDetailId,
   products,
   articleClassName,
   detailBtnClassName,
@@ -16,15 +13,13 @@ const ProductMapper = ({
     return (
       <ProductItem
         key={id}
-        textContent={productDetailId ? fakeDetails : title}
+        textContent={title}
         image={image}
         alt={title}
         articleClassName={articleClassName}
         detailBtnClassName={detailBtnClassName}
         detailsContentClassName={detailsContentClassName}
-        actionProductDetail={() =>
-          actionProductDetail(productDetailId ? null : id)
-        }
+        actionProductDetail={() => actionProductDetail(id)}
         actionIncProduct={() => actionIncAndDecProduct(id)}
       />
     );

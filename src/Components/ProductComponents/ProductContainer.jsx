@@ -14,7 +14,7 @@ import ProductMapper from "./ProductMapper";
 const ProductContainer = ({ products, productDetailId }) => {
   const dispatch = useDispatch();
 
-  const { product, classNames } = useMemo(
+  const { condition, product, classNames } = useMemo(
     () => handleFindProductAndDetails(products, productDetailId),
     [products, productDetailId]
   );
@@ -26,12 +26,13 @@ const ProductContainer = ({ products, productDetailId }) => {
       </div>
 
       <ProductMapper
-        productDetailId={productDetailId}
-        products={product.length ? product : products}
+        products={condition ? product : products}
         articleClassName={classNames.article}
         detailBtnClassName={classNames.btn}
         detailsContentClassName={classNames.detailContent}
-        actionProductDetail={(id) => dispatch(actionProductDetail(id))}
+        actionProductDetail={(id) =>
+          dispatch(actionProductDetail(condition ? null : id))
+        }
         actionIncAndDecProduct={(id) =>
           dispatch(actionIncAndDecProduct({ id, op: +1 }))
         }
