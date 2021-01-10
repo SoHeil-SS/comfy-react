@@ -9,13 +9,13 @@ const ProductMapper = ({
   actionIncAndDecProduct,
 }) => {
   const mappedProducts = products.map((product) => {
-    const { id, title, image } = product;
+    const { id, textContent, image } = product;
     return (
       <ProductItem
         key={id}
-        textContent={title}
+        textContent={textContent}
         image={image}
-        alt={title}
+        alt={textContent}
         articleClassName={articleClassName}
         detailBtnClassName={detailBtnClassName}
         detailsContentClassName={detailsContentClassName}

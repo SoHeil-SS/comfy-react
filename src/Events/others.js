@@ -48,7 +48,7 @@ export const handleFindProductAndDetails = (products, productDetailId) => {
     ? productItemClassNames.details
     : productItemClassNames.main;
 
-  product.title = fakeDetails;
+  product.textContent = fakeDetails;
 
   return {
     condition: !!productDetailId,

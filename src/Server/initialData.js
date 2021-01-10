@@ -8,7 +8,7 @@ export const getInitialData = (pageIndex) =>
       res.data.map((item) => {
         return {
           id: item.sys.id,
-          title: item.fields.title,
+          textContent: item.fields.title,
           price: item.fields.price,
           image: item.fields.image.fields.file.url,
           alt: item.fields.title,
