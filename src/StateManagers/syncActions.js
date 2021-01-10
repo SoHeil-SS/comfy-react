@@ -2,11 +2,7 @@ import { actionCreator } from "./actionCreator";
 
 export const handleSetData = (payload) => actionCreator("GET_DATA", payload);
 
-<<<<<<< HEAD
 export const actionIncAndDecProduct = (payload) =>
-=======
-export const handleIncAndDecProduct = (payload) =>
->>>>>>> 0e7b22be16da8bacf1b42017b001b0166a049043
   actionCreator("INC_OR_DEC_PRODUCT", payload);
 
 export const actionFactorVisibility = () => actionCreator("FACTOR_VISIBILITY");
