@@ -1,4 +1,5 @@
-import { fakeDetails, productItemClassNames } from "../Constants/variables";
+import { productItemClassNames } from "../Constants/classNames";
+import { fakeDetails } from "../Constants/others";
 
 export const handleFactorCarts = (factorCarts) =>
   factorCarts.filter((product) => product.inCart > 0);

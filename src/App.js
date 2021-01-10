@@ -20,7 +20,8 @@ import Loader from "./Components/Others/Loader";
 import Portal from "./Components/Others/Portal";
 
 import { DispatchContext } from "./Contexts/DispatchContext";
-import { loader } from "./Constants/loader";
+
+import { loader } from "./Constants/styles";
 import PageIndexer from "./Components/Others/PageIndexer";
 
 const App = () => {
