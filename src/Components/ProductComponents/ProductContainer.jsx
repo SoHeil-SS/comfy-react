@@ -28,16 +28,16 @@ const ProductContainer = ({ products, productDetailId }) => {
       {product ? (
         <ProductDetails
           product={product}
-          handleIncProduct={(id) =>
+          actionIncAndDecProduct={(id) =>
             dispatch(actionIncAndDecProduct({ id, op: +1 }))
           }
-          handleProductDetail={() => dispatch(actionProductDetail(null))}
+          actionProductDetail={() => dispatch(actionProductDetail(null))}
         />
       ) : (
         <ProductMapper
           products={products}
-          handleProductDetail={(id) => dispatch(actionProductDetail(id))}
-          handleIncProduct={(id) =>
+          actionProductDetail={(id) => dispatch(actionProductDetail(id))}
+          actionIncAndDecProduct={(id) =>
             dispatch(actionIncAndDecProduct({ id, op: +1 }))
           }
         />

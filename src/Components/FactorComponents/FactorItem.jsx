@@ -5,9 +5,9 @@ const FactorItem = ({
   total,
   image,
   inCart,
-  handleIncCart,
-  handleDecCart,
-  handleRemoveCart,
+  actionIncCart,
+  actionDecCart,
+  actionRemoveCart,
 }) => {
   return (
     <div className="cart-item">
@@ -15,14 +15,14 @@ const FactorItem = ({
       <div>
         <h4>{title} </h4>
         <h5>{total}</h5>
-        <Button variant="outline-danger" onClick={handleRemoveCart}>
+        <Button variant="outline-danger" onClick={actionRemoveCart}>
           Remove
         </Button>
       </div>
       <div>
-        <i className="fas fa-chevron-up" onClick={handleIncCart} />
+        <i className="fas fa-chevron-up" onClick={actionIncCart} />
         <p className="item-amount">{inCart}</p>
-        <i className="fas fa-chevron-down" onClick={handleDecCart} />
+        <i className="fas fa-chevron-down" onClick={actionDecCart} />
       </div>
     </div>
   );

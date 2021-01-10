@@ -1,8 +1,8 @@
 const FactorFooter = ({
-  handleClearCarts,
   totalPrice,
   clearDisabled,
   clearClassName,
+  actionClearCarts,
 }) => {
   return (
     <div className="cart-footer">
@@ -11,7 +11,7 @@ const FactorFooter = ({
       </h3>
       <button
         className={clearClassName}
-        onClick={handleClearCarts}
+        onClick={actionClearCarts}
         disabled={clearDisabled}
       >
         Clear Carts

@@ -1,11 +1,11 @@
 import FactorItem from "./FactorItem";
 
 const FactorMapper = ({
-  filteredFactorProducts,
-  handleIncDecCart,
-  handleRemoveCart,
+  filteredFactorCarts,
+  actionIncAndDecCart,
+  actionRemoveCart,
 }) => {
-  const Carts = filteredFactorProducts.map((cart) => {
+  const Carts = filteredFactorCarts.map((cart) => {
     const { id, title, image, inCart, price } = cart;
     return (
       <FactorItem
@@ -14,9 +14,9 @@ const FactorMapper = ({
         total={price * inCart}
         image={image}
         inCart={inCart}
-        handleIncCart={() => handleIncDecCart(id, +1)}
-        handleDecCart={() => handleIncDecCart(id, -1)}
-        handleRemoveCart={() => handleRemoveCart(id, inCart)}
+        actionIncCart={() => actionIncAndDecCart(id, +1)}
+        actionDecCart={() => actionIncAndDecCart(id, -1)}
+        actionRemoveCart={() => actionRemoveCart(id, -inCart)}
       />
     );
   });

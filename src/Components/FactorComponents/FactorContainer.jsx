@@ -17,7 +17,7 @@ import FactorFooter from "./FactorFooter";
 const FactorContainer = ({ factorVisibility, factorCarts }) => {
   const dispatch = useDispatch();
 
-  const filteredFactorProducts = useMemo(() => handleFactorCarts(factorCarts), [
+  const filteredFactorCarts = useMemo(() => handleFactorCarts(factorCarts), [
     factorCarts,
   ]);
 
@@ -29,21 +29,21 @@ const FactorContainer = ({ factorVisibility, factorCarts }) => {
     <div className={factorVisibility ? " cart-overlay transparentBcg" : ""}>
       <div className={factorVisibility ? "cart showCart" : "cart"}>
         <FactorHeader
-          handleFactorVisibility={() => dispatch(actionFactorVisibility())}
+          actionFactorVisibility={() => dispatch(actionFactorVisibility())}
         />
 
         <FactorMapper
-          filteredFactorProducts={filteredFactorProducts}
-          handleIncDecCart={(id, op) =>
+          filteredFactorCarts={filteredFactorCarts}
+          actionIncAndDecCart={(id, op) =>
             dispatch(actionIncAndDecProduct({ id, op }))
           }
-          handleRemoveCart={(id, inCart) =>
-            dispatch(actionIncAndDecProduct({ id, op: -inCart }))
+          actionRemoveCart={(id, inCart) =>
+            dispatch(actionIncAndDecProduct({ id, op: inCart }))
           }
         />
 
         <FactorFooter
-          handleClearCarts={() => dispatch(actionClearCarts())}
+          actionClearCarts={() => dispatch(actionClearCarts())}
           totalPrice={totalPrice}
           clearDisabled={!totalPrice}
           clearClassName={

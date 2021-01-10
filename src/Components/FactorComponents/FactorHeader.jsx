@@ -1,10 +1,10 @@
 import { Button } from "react-bootstrap";
 
-const FactorHeader = ({ handleFactorVisibility }) => {
+const FactorHeader = ({ actionFactorVisibility }) => {
   return (
     <>
       <span className="close-cart">
-        <Button variant="danger" onClick={handleFactorVisibility}>
+        <Button variant="danger" onClick={actionFactorVisibility}>
           X
         </Button>
       </span>

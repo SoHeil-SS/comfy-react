@@ -1,6 +1,10 @@
 import ProductItem from "./ProductItem";
 
-const ProductMapper = ({ products, handleProductDetail, handleIncProduct }) => {
+const ProductMapper = ({
+  products,
+  actionProductDetail,
+  actionIncAndDecProduct,
+}) => {
   const Products = products.map((product) => {
     const { id, title, image } = product;
     return (
@@ -11,8 +15,8 @@ const ProductMapper = ({ products, handleProductDetail, handleIncProduct }) => {
         alt={title}
         articleClassName="product"
         detailBtnClassName="fas fa-info-circle"
-        handleProductDetail={() => handleProductDetail(id)}
-        handleIncProduct={() => handleIncProduct(id)}
+        handleProductDetail={() => actionProductDetail(id)}
+        handleIncProduct={() => actionIncAndDecProduct(id)}
       />
     );
   });
