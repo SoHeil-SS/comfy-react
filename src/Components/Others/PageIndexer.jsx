@@ -1,18 +1,18 @@
 import { Button } from "react-bootstrap";
 
-function PageIndexer({ nextDisabled, prevDisabled, handlePageIndex }) {
+function PageIndexer({ nextDisabled, prevDisabled, actionPageIndex }) {
   return (
     <div className="page-indexer">
       <Button
         variant="outline-secondary"
-        onClick={() => handlePageIndex(-1)}
+        onClick={() => actionPageIndex(-1)}
         disabled={prevDisabled}
       >
         Prev
       </Button>
       <Button
         variant="outline-primary"
-        onClick={() => handlePageIndex(+1)}
+        onClick={() => actionPageIndex(+1)}
         disabled={nextDisabled}
       >
         Next

@@ -7,41 +7,35 @@ import {
   actionIncAndDecProduct,
 } from "../../StateManagers/syncActions";
 
-import { handleFindProduct } from "../../Events/others";
+import { handleFindProductAndDetails } from "../../Events/others";
 
-import ProductDetails from "./ProductDetails";
 import ProductMapper from "./ProductMapper";
 
 const ProductContainer = ({ products, productDetailId }) => {
   const dispatch = useDispatch();
 
-  const product = useMemo(() => handleFindProduct(products, productDetailId), [
-    products,
-    productDetailId,
-  ]);
+  const { product, classNames } = useMemo(
+    () => handleFindProductAndDetails(products, productDetailId),
+    [products, productDetailId]
+  );
 
   return (
     <section className="products">
       <div className="section-title">
         <h2> Our Products</h2>
       </div>
-      {product ? (
-        <ProductDetails
-          product={product}
-          actionIncAndDecProduct={(id) =>
-            dispatch(actionIncAndDecProduct({ id, op: +1 }))
-          }
-          actionProductDetail={() => dispatch(actionProductDetail(null))}
-        />
-      ) : (
-        <ProductMapper
-          products={products}
-          actionProductDetail={(id) => dispatch(actionProductDetail(id))}
-          actionIncAndDecProduct={(id) =>
-            dispatch(actionIncAndDecProduct({ id, op: +1 }))
-          }
-        />
-      )}
+
+      <ProductMapper
+        productDetailId={productDetailId}
+        products={product.length ? product : products}
+        articleClassName={classNames.article}
+        detailBtnClassName={classNames.btn}
+        detailsContentClassName={classNames.detailContent}
+        actionProductDetail={(id) => dispatch(actionProductDetail(id))}
+        actionIncAndDecProduct={(id) =>
+          dispatch(actionIncAndDecProduct({ id, op: +1 }))
+        }
+      />
     </section>
   );
 };

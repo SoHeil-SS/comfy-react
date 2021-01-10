@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 
 import Navbar from "./Navbar";
 
-function NavigationBar({ basketCount, handleFactorVisibility }) {
+function NavigationBar({ basketCount, actionFactorVisibility }) {
   return (
     <Navbar>
       <Button variant="dark" disabled>
@@ -13,7 +13,7 @@ function NavigationBar({ basketCount, handleFactorVisibility }) {
         <Button
           className=" btn-dark btn-lg nav-icon "
           disabled={!basketCount}
-          onClick={handleFactorVisibility}
+          onClick={actionFactorVisibility}
         >
           <i className="fas fa-cart-plus"></i>
         </Button>

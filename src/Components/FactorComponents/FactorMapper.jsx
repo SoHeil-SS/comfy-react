@@ -5,7 +5,7 @@ const FactorMapper = ({
   actionIncAndDecCart,
   actionRemoveCart,
 }) => {
-  const Carts = filteredFactorCarts.map((cart) => {
+  const mappedFactorCarts = filteredFactorCarts.map((cart) => {
     const { id, title, image, inCart, price } = cart;
     return (
       <FactorItem
@@ -20,7 +20,7 @@ const FactorMapper = ({
       />
     );
   });
-  return <div className="cart-content">{Carts}</div>;
+  return <div className="cart-content">{mappedFactorCarts}</div>;
 };
 
 export default FactorMapper;

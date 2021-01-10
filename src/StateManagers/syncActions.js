@@ -1,6 +1,6 @@
 import { actionCreator } from "./actionCreator";
 
-export const handleSetData = (payload) => actionCreator("GET_DATA", payload);
+export const actionSetData = (payload) => actionCreator("GET_DATA", payload);
 
 export const actionIncAndDecProduct = (payload) =>
   actionCreator("INC_OR_DEC_PRODUCT", payload);

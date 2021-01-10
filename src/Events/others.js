@@ -1,3 +1,5 @@
+import { productItemClassNames } from "../Constants/variables";
+
 export const handleFactorCarts = (factorCarts) =>
   factorCarts.filter((product) => product.inCart > 0);
 
@@ -38,5 +40,16 @@ export const handleStateCopier = (
   cartIndex: factorCarts.findIndex((cart) => cart.id === id),
 });
 
-export const handleFindProduct = (products, productDetailId) =>
-  products.find((product) => product.id === productDetailId);
+export const handleFindProductAndDetails = (products, productDetailId) => ({
+  product: products.filter((product) => product.id === productDetailId),
+  classNames: productDetailId
+    ? {
+        article: productItemClassNames.details.article,
+        detailContent: productItemClassNames.details.details,
+        btn: productItemClassNames.details.btn,
+      }
+    : {
+        article: productItemClassNames.main.article,
+        btn: productItemClassNames.main.btn,
+      },
+});

@@ -4,7 +4,7 @@ import { reducer } from "./StateManagers/reducer";
 import {
   actionFactorVisibility,
   actionPageIndex,
-  handleSetData,
+  actionSetData,
 } from "./StateManagers/syncActions";
 
 import { getInitialData } from "./Server/initialData";
@@ -45,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     getInitialData(pageIndex).then((products) =>
-      dispatch(handleSetData(products))
+      dispatch(actionSetData(products))
     );
   }, [pageIndex, dispatch]);
 
@@ -57,7 +57,7 @@ const App = () => {
     <DispatchContext.Provider value={dispatch}>
       <NavigationBar
         basketCount={handleBasketCount(factorCarts)}
-        handleFactorVisibility={() => dispatch(actionFactorVisibility())}
+        actionFactorVisibility={() => dispatch(actionFactorVisibility())}
       />
 
       <Header />
@@ -68,7 +68,7 @@ const App = () => {
         <PageIndexer
           nextDisabled={pageIndex > 2}
           prevDisabled={pageIndex <= 1}
-          handlePageIndex={(op) => dispatch(actionPageIndex(op))}
+          actionPageIndex={(op) => dispatch(actionPageIndex(op))}
         />
       )}
 

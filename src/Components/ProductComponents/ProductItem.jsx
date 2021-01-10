@@ -1,15 +1,14 @@
 import { Button } from "react-bootstrap";
 
 const ProductItem = ({
-  title,
-  details,
+  textContent,
   image,
   alt,
   articleClassName,
   detailBtnClassName,
   detailsContentClassName,
-  handleIncProduct,
-  handleProductDetail,
+  actionProductDetail,
+  actionIncProduct,
 }) => {
   return (
     <article className={articleClassName}>
@@ -19,7 +18,7 @@ const ProductItem = ({
           <Button
             variant="secondary"
             className="bag-btn detail-btn"
-            onClick={handleProductDetail}
+            onClick={actionProductDetail}
           >
             <i className={detailBtnClassName}></i>
           </Button>
@@ -27,14 +26,13 @@ const ProductItem = ({
           <Button
             variant="primary"
             className="bag-btn add-btn "
-            onClick={handleIncProduct}
+            onClick={actionIncProduct}
           >
             <i className="fas fa-shopping-basket"></i>
           </Button>
         </div>
       </div>
-      <p className={detailsContentClassName}>{details}</p>
-      <h3>{title}</h3>
+      <h3 className={detailsContentClassName}>{textContent}</h3>
     </article>
   );
 };
