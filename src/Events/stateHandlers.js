@@ -27,7 +27,6 @@ export const handleFactorVisibility = (state) => ({
 
 export const handleClearCarts = (state) => ({
   ...state,
-  factorVisibility: !state.factorVisibility,
   factorCarts: [],
 });
 
