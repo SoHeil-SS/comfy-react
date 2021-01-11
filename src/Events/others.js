@@ -13,9 +13,8 @@ export const handleTotalPrice = (factorCarts) => {
   return total;
 };
 
-export const handleFinallyCarts = (factorCarts, cartIndex, cart) => {
+export const handleFinallyCarts = (factorCarts, cartIndex, cart) =>
   factorCarts.splice(cartIndex, 1, cart);
-};
 
 export const handleScrollTo = (scroll) =>
   setTimeout(() => scroll({ y: 899 }), 300);
@@ -32,11 +31,11 @@ export const handleStateCopier = (
   { products, factorCarts, factorVisibility },
   id
 ) => ({
-  //States
+  //Unchanged states
   factorVisibility,
-  //Variables
+  //Changed to variables
   factorCarts: [...factorCarts],
-  cart: factorCarts.find((cart) => cart.id === id),
+  cart: { ...factorCarts.find((cart) => cart.id === id) },
   product: { ...products.find((cart) => cart.id === id) },
   cartIndex: factorCarts.findIndex((cart) => cart.id === id),
 });

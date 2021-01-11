@@ -19,6 +19,8 @@ const ProductContainer = ({ products, productDetailId }) => {
     [products, productDetailId]
   );
 
+  const { article, btn, detailContent } = classNames;
+
   return (
     <section className="products">
       <div className="section-title">
@@ -27,9 +29,9 @@ const ProductContainer = ({ products, productDetailId }) => {
 
       <ProductMapper
         products={condition ? product : products}
-        articleClassName={classNames.article}
-        detailBtnClassName={classNames.btn}
-        detailsContentClassName={classNames.detailContent}
+        articleClassName={article}
+        detailBtnClassName={btn}
+        detailsContentClassName={detailContent}
         actionProductDetail={(id) =>
           dispatch(actionProductDetail(condition ? null : id))
         }

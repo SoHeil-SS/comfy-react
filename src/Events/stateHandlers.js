@@ -9,7 +9,7 @@ export const handleSetData = (state, products) => ({
 export const handleIncAndDecProduct = (state, { id, op }) => {
   let { factorCarts, cart, product, cartIndex } = handleStateCopier(state, id);
 
-  if (!cart) {
+  if (!cart.inCart) {
     product.inCart = 1;
     factorCarts.push(product);
   } else {
@@ -29,9 +29,6 @@ export const handleClearCarts = (state) => ({
   ...state,
   factorCarts: [],
 });
-
-export const handleSliceProducts = (products, index) =>
-  products.slice(index * 3, index * 3 + 3);
 
 export const handlePageIndex = (state, op) => ({
   ...state,
